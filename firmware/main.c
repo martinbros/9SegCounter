@@ -109,6 +109,7 @@ void save_digit(char c)
   if (pixels_read == PIXELS) {
     reset_input();
     write_pixels();
+    softuart_puts_P(".\r\n");
   }
 }
 
@@ -126,9 +127,15 @@ int main(void)
   for(;;) {
     if (softuart_kbhit()) {
       c = softuart_getchar();
-      save_digit(c);
       if (c == 'x') {
         reset_input();
+        softuart_puts_P("x\r\n");
+      }
+      else if (c == 'q') {
+        return 1;
+      }
+      else {
+        save_digit(c);
       }
     }
   }
