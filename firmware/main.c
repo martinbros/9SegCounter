@@ -5,6 +5,10 @@
 #include <util/delay.h>
 #include "softuart.h"
 
+#define PIXEL_PORT PORTA
+#define PIXEL_DDR  DDRA
+#define PIXEL_BIT  PORTA5
+/* PA5 is pin 8 */
 /* softuart uses PA1 for RX, PA2 for TX (pins 12 and 11) */
 
 void check_serial()
@@ -12,6 +16,12 @@ void check_serial()
   char c;
   if (softuart_kbhit()) {
     c = softuart_getchar();
+    if (c & 0x1) {
+      PIXEL_PORT |= _BV(PIXEL_BIT);
+    }
+    else {
+      PIXEL_PORT &= ~_BV(PIXEL_BIT);
+    }
     softuart_putchar(c);
     softuart_putchar('\r');
     softuart_putchar('\n');
@@ -20,11 +30,13 @@ void check_serial()
 
 int main(void)
 {
+  /* set pixel pin to output */
+  PIXEL_DDR |= (1 << PIXEL_BIT);
   softuart_init();
   sei(); /* enable interrupts */
   softuart_puts_P( "ready.\r\n" );
 
-  while(1) {
+  for(;;) {
     check_serial();
   }
 
