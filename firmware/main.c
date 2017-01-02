@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <stdlib.h>
+#include <string.h>
 #include <avr/pgmspace.h> /* for puts_P macro support */
 #include <util/delay.h>
 #include "softuart.h"
@@ -14,9 +15,18 @@
 /* PA5 is pin 8 */
 /* softuart uses PA1 for RX, PA2 for TX (pins 12 and 11) */
 
-#define SCALE(val) ((val) >> 1)
+#define SCALE(val) ((val) >> 2)
 
 static uint8_t grb[PIXELS*3];
+
+/* rgb input buffer */
+static uint8_t input[3];
+/* how many pixels we've read */
+static uint8_t pixels_read = 0;
+/* the byte we're reading in */
+static uint8_t byte = 0;
+/* which nibble we're reading */
+static uint8_t nibble = 0;
 
 void set_pixel(uint8_t i, uint8_t r, uint8_t g, uint8_t b)
 {
@@ -54,32 +64,73 @@ void write_pixels() {
   sei(); /* enable interrupts */
 }
 
-void check_serial()
+void reset_input() {
+  nibble = byte = pixels_read = 0;
+  memset(&input, 0, 3);
+}
+
+void save_digit(char c)
 {
-  char c;
-  if (softuart_kbhit()) {
-    c = softuart_getchar();
-    if (c & 0x1) {
-      set_pixel(0, 255, 0, 0);
-    }
-    else {
-      set_pixel(0, 0, 0, 255);
-    }
+  uint8_t value;
+  if (c >= '0' && c <= '9') {
+    value = c - '0';
+  }
+  else if (c >= 'a' && c <= 'f') {
+    value = 0xa + (c - 'a');
+  }
+  else if (c >= 'A' && c <= 'F') {
+    value = 0xa + (c - 'A');
+  }
+  else {
+    return;
+  }
+
+  /* save the value in the current input and nibble */
+  /* left to right, MSB first */
+  if (nibble == 0) {
+    value = value << 4;
+  }
+  input[byte] |= value;
+
+  /* then advance to the next nibble, byte, or pixel */
+  if (nibble == 0) {
+    nibble++;
+  }
+  else {
+    nibble = 0;
+    byte += 1;
+  }
+  if (byte == 3) {
+    set_pixel(pixels_read, input[0], input[1], input[2]);
+    pixels_read += 1;
+    byte = 0;
+    memset(&input, 0, 3);
+  }
+  if (pixels_read == PIXELS) {
+    reset_input();
     write_pixels();
-    softuart_putchar(c);
   }
 }
 
 int main(void)
 {
+  char c;
+
   /* set pixel pin to output */
   PIXEL_DDR |= (1 << PIXEL_BIT);
   softuart_init();
   sei(); /* enable interrupts */
   softuart_puts_P( "ready.\r\n" );
+  write_pixels();
 
   for(;;) {
-    check_serial();
+    if (softuart_kbhit()) {
+      c = softuart_getchar();
+      save_digit(c);
+      if (c == 'x') {
+        reset_input();
+      }
+    }
   }
 
   return 0;
