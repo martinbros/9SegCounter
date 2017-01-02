@@ -93,11 +93,14 @@ module Animations
 end
 
 def device
-  @device ||= Dir.glob("/dev/cu.usbserial*").first
+  return @device if defined?(@device) && @device
+  @device = Dir.glob("/dev/cu.usbserial*").first
+  raise "no usbserial device found!" unless @device
+  @device
 end
 
 def strip
-  return @strip if defined?(@strip)
+  return @strip if defined?(@strip) && @strip
   @strip = SerialController.new device_path: device, pixel_count: 16
   puts "starting with #{device}"
   strip.extend Animations
