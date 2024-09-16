@@ -1,0 +1,91 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "c50b0073-6340-498a-8f0c-212ef3b3c0fe")
+	(paper "A4")
+	(lib_symbols)
+	(sheet
+		(at 73.66 48.26)
+		(size 16.51 12.7)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "5c493882-1689-4a6d-b4b4-08608e8edf66")
+		(property "Sheetname" "pcb9SegDigit"
+			(at 73.66 47.5484 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "9SegDigit.kicad_sch"
+			(at 73.66 61.5446 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "DIN" input
+			(at 73.66 54.61 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "b3470597-0c34-4ab8-8ce8-7691ba082937")
+		)
+		(pin "5V" input
+			(at 73.66 50.8 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "ed320a7a-0a59-4316-bcde-1d7919381a54")
+		)
+		(pin "GND" output
+			(at 73.66 58.42 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "2258ffb2-fd2e-4380-a08a-a9a8fc802ea1")
+		)
+		(pin "DOUT" output
+			(at 90.17 54.61 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "585f9f96-42c7-49eb-b6b4-4197b699665a")
+		)
+		(instances
+			(project "pcb9segCounter"
+				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)
