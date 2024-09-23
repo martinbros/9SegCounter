@@ -48,7 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
-          "min_clearance": 0.5
+          "min_clearance": 0.3048
         }
       },
       "diff_pair_dimensions": [
@@ -123,7 +123,7 @@
         "min_hole_to_hole": 0.127,
         "min_microvia_diameter": 0.508,
         "min_microvia_drill": 0.254,
-        "min_resolved_spokes": 2,
+        "min_resolved_spokes": 1,
         "min_silk_clearance": 0.0,
         "min_text_height": 0.8128,
         "min_text_thickness": 0.127,
@@ -660,14 +660,6 @@
     [
       "3b31bf75-0830-4091-8274-a65747ea74f2",
       "pcb9SegDigit1"
-    ],
-    [
-      "22bfc2a0-8fcb-4720-a36c-753b0c572d0f",
-      "pcb9SegDigit2"
-    ],
-    [
-      "b6b935bf-feab-4172-8fa2-42984df36767",
-      "pcb9SegDigit3"
     ],
     [
       "517a53d5-7656-4587-9e33-3f758e9574ab",

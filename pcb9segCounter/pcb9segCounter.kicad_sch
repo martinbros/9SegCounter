@@ -223,8 +223,8 @@
 		)
 	)
 	(no_connect
-		(at 189.23 66.04)
-		(uuid "4ba7800d-5ad3-49f1-b0af-abaab9b0c1cf")
+		(at 140.97 66.04)
+		(uuid "3b0b78f7-05e5-4ef7-a6dd-10f714773041")
 	)
 	(wire
 		(pts
@@ -238,46 +238,6 @@
 	)
 	(wire
 		(pts
-			(xy 163.83 66.04) (xy 172.72 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "2f0cd1b5-8a94-4fda-8343-3e82f5aafd5a")
-	)
-	(wire
-		(pts
-			(xy 144.78 72.39) (xy 144.78 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "366b34e3-ce8b-4c39-8c90-1645f3311559")
-	)
-	(wire
-		(pts
-			(xy 170.18 62.23) (xy 172.72 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "400f7795-2356-4d70-b3d1-f5ce3cc31a36")
-	)
-	(wire
-		(pts
-			(xy 144.78 59.69) (xy 144.78 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "433fda5a-909c-4be6-97e9-3c25e747089f")
-	)
-	(wire
-		(pts
 			(xy 119.38 62.23) (xy 121.92 62.23)
 		)
 		(stroke
@@ -285,36 +245,6 @@
 			(type default)
 		)
 		(uuid "473e30d9-e128-4f94-bbd9-3ef2fba6003b")
-	)
-	(wire
-		(pts
-			(xy 170.18 59.69) (xy 170.18 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "493b8081-1b56-4b3a-8a76-a25682e80219")
-	)
-	(wire
-		(pts
-			(xy 144.78 62.23) (xy 147.32 62.23)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4a4aa58d-4e2b-4b53-84be-5378bec23c8e")
-	)
-	(wire
-		(pts
-			(xy 144.78 69.85) (xy 147.32 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "4e152db3-c6fe-4878-af61-7e3a4b69dfe4")
 	)
 	(wire
 		(pts
@@ -338,26 +268,6 @@
 	)
 	(wire
 		(pts
-			(xy 170.18 69.85) (xy 172.72 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7e4d0c6b-f082-4b59-bdec-142d051a0c31")
-	)
-	(wire
-		(pts
-			(xy 170.18 72.39) (xy 170.18 69.85)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "86bd982e-6239-4522-a879-ec6a29ae986c")
-	)
-	(wire
-		(pts
 			(xy 113.03 66.04) (xy 121.92 66.04)
 		)
 		(stroke
@@ -365,16 +275,6 @@
 			(type default)
 		)
 		(uuid "99a2c598-3aae-4b17-90a3-8767f34f0d8a")
-	)
-	(wire
-		(pts
-			(xy 138.43 66.04) (xy 147.32 66.04)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "b40e8519-c0f5-4fd1-bbd8-1e815b5b2eaf")
 	)
 	(wire
 		(pts
@@ -395,6 +295,16 @@
 			(type default)
 		)
 		(uuid "cfc4b0c8-4796-408a-9ce6-aca162ebee8c")
+	)
+	(wire
+		(pts
+			(xy 138.43 66.04) (xy 140.97 66.04)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e6ba33f0-c8bb-4b6b-95de-4177d8e22b33")
 	)
 	(wire
 		(pts
@@ -560,204 +470,6 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 170.18 72.39 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "05066606-3ca9-4f1b-ae73-2680203f7a9d")
-		(property "Reference" "#PWR08"
-			(at 170.18 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 170.18 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 170.18 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 170.18 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 170.18 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "f0f7fdd8-1d37-4bbf-8023-a81a4eecfc44")
-		)
-		(instances
-			(project "pcb9segCounter"
-				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(reference "#PWR08")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 144.78 59.69 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "101a224e-a23a-45ef-9789-b2ae3c7d5654")
-		(property "Reference" "#PWR05"
-			(at 144.78 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 144.78 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 144.78 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 144.78 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 144.78 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "963343d9-c860-4c8f-8e4c-9999fe51a531")
-		)
-		(instances
-			(project "pcb9segCounter"
-				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(reference "#PWR05")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
-		(at 144.78 72.39 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "4aaaab06-c1c5-4af9-8ae8-d81079385980")
-		(property "Reference" "#PWR06"
-			(at 144.78 78.74 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "GND"
-			(at 144.78 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 144.78 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 144.78 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 144.78 72.39 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "6fa03b98-ec4d-497a-b24e-ebdb12845dce")
-		)
-		(instances
-			(project "pcb9segCounter"
-				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(reference "#PWR06")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:GND")
 		(at 93.98 72.39 0)
 		(unit 1)
 		(exclude_from_sim no)
@@ -817,72 +529,6 @@
 			(project ""
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(reference "#PWR02")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "power:+5V")
-		(at 170.18 59.69 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "82feaf94-5483-4aba-be59-5830d6d88353")
-		(property "Reference" "#PWR07"
-			(at 170.18 63.5 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Value" "+5V"
-			(at 170.18 54.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" ""
-			(at 170.18 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" ""
-			(at 170.18 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 170.18 59.69 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "4c2ed984-bd1a-456e-ac3c-5c685144e311")
-		)
-		(instances
-			(project "pcb9segCounter"
-				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -950,84 +596,6 @@
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(reference "#PWR04")
 					(unit 1)
-				)
-			)
-		)
-	)
-	(sheet
-		(at 147.32 59.69)
-		(size 16.51 12.7)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "22bfc2a0-8fcb-4720-a36c-753b0c572d0f")
-		(property "Sheetname" "pcb9SegDigit2"
-			(at 147.32 58.9784 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "9SegDigit.kicad_sch"
-			(at 147.32 72.7206 0)
-			(effects
-				(font
-					(size 0.635 0.635)
-				)
-				(justify left top)
-			)
-		)
-		(pin "DIN" input
-			(at 147.32 66.04 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "1eb4edfe-e824-407d-83d9-46e2f45f38fb")
-		)
-		(pin "5V" input
-			(at 147.32 62.23 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "b56fa58c-a2c5-47cc-b222-b6bffc07ab51")
-		)
-		(pin "GND" output
-			(at 147.32 69.85 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "15b937a7-a5a2-46c0-b031-cab8ebea8b7d")
-		)
-		(pin "DOUT" output
-			(at 163.83 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "94f8e9b2-cd4e-4fee-bb96-d7e23c003221")
-		)
-		(instances
-			(project "pcb9segCounter"
-				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(page "4")
 				)
 			)
 		)
@@ -1232,84 +800,6 @@
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(page "2")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 172.72 59.69)
-		(size 16.51 12.7)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "b6b935bf-feab-4172-8fa2-42984df36767")
-		(property "Sheetname" "pcb9SegDigit3"
-			(at 172.72 58.9784 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "9SegDigit.kicad_sch"
-			(at 172.72 72.7206 0)
-			(effects
-				(font
-					(size 0.635 0.635)
-				)
-				(justify left top)
-			)
-		)
-		(pin "DIN" input
-			(at 172.72 66.04 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "b5fbcfd2-95b6-40b6-bf2a-17be0a03bd19")
-		)
-		(pin "5V" input
-			(at 172.72 62.23 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "88d8ccf0-7429-4f0f-af0f-498367dbe803")
-		)
-		(pin "GND" output
-			(at 172.72 69.85 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "a5bd2da4-ea92-4410-91d5-8a6286a041c7")
-		)
-		(pin "DOUT" output
-			(at 189.23 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "638adedc-45c2-456e-8111-1f7061dfafa8")
-		)
-		(instances
-			(project "pcb9segCounter"
-				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(page "5")
 				)
 			)
 		)
