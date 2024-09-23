@@ -179,7 +179,8 @@
       ],
       "track_widths": [
         0.0,
-        0.3048
+        0.3048,
+        0.6096
       ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
@@ -582,6 +583,24 @@
           "label": "Description",
           "name": "Description",
           "show": true
+        },
+        {
+          "group_by": false,
+          "label": "implementationCheck",
+          "name": "implementationCheck",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "mouserPN",
+          "name": "mouserPN",
+          "show": false
+        },
+        {
+          "group_by": false,
+          "label": "footprintCheck",
+          "name": "footprintCheck",
+          "show": false
         }
       ],
       "filter_string": "",
