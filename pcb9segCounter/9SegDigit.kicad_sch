@@ -640,13 +640,19 @@
 		(uuid "63458382-145d-4489-a857-b12c0a541483")
 	)
 	(junction
-		(at 158.75 133.35)
+		(at 149.86 133.35)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "68be9b2b-bdd9-4012-bb07-41c54a957c28")
 	)
 	(junction
-		(at 158.75 140.97)
+		(at 167.64 133.35)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7cdd95c9-4a3c-4b82-9cb4-1ba5f84d2880")
+	)
+	(junction
+		(at 149.86 140.97)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "86744e49-038d-417f-bff3-0188e89de6a3")
@@ -668,6 +674,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "a4fc0cc3-3fd8-4edc-b5bc-fe1e73f9c499")
+	)
+	(junction
+		(at 167.64 140.97)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "a72e6a5c-2fb4-460a-afeb-e0012ef43a5e")
 	)
 	(junction
 		(at 132.08 99.06)
@@ -749,23 +761,23 @@
 	)
 	(wire
 		(pts
-			(xy 158.75 133.35) (xy 185.42 133.35)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0d739445-aa60-4893-9718-fade86f4ebb9")
-	)
-	(wire
-		(pts
-			(xy 132.08 133.35) (xy 158.75 133.35)
+			(xy 132.08 133.35) (xy 149.86 133.35)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
 		(uuid "1c25bf4b-a672-4433-bcb0-d1f7b69667e9")
+	)
+	(wire
+		(pts
+			(xy 167.64 140.97) (xy 185.42 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "25452fab-b20d-4414-90ba-fd6dbd52ec77")
 	)
 	(wire
 		(pts
@@ -959,7 +971,7 @@
 	)
 	(wire
 		(pts
-			(xy 132.08 140.97) (xy 158.75 140.97)
+			(xy 132.08 140.97) (xy 149.86 140.97)
 		)
 		(stroke
 			(width 0)
@@ -986,6 +998,16 @@
 			(type default)
 		)
 		(uuid "92da08a3-8b62-4c81-bbb8-71099acab72e")
+	)
+	(wire
+		(pts
+			(xy 149.86 140.97) (xy 167.64 140.97)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9a2a1b3d-57b4-4d04-b050-770d687348c9")
 	)
 	(wire
 		(pts
@@ -1099,6 +1121,16 @@
 	)
 	(wire
 		(pts
+			(xy 149.86 133.35) (xy 167.64 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ca166ccf-e82f-4087-9bf3-183c3bf29b66")
+	)
+	(wire
+		(pts
 			(xy 96.52 99.06) (xy 114.3 99.06)
 		)
 		(stroke
@@ -1169,6 +1201,16 @@
 	)
 	(wire
 		(pts
+			(xy 167.64 133.35) (xy 185.42 133.35)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "f557bc97-9f03-49b3-867f-055de93a77c9")
+	)
+	(wire
+		(pts
 			(xy 96.52 114.3) (xy 78.74 114.3)
 		)
 		(stroke
@@ -1176,16 +1218,6 @@
 			(type default)
 		)
 		(uuid "f8eb7d0d-0824-4e35-9efe-e32017e053a9")
-	)
-	(wire
-		(pts
-			(xy 158.75 140.97) (xy 185.42 140.97)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "fab95cf3-7b5f-48c1-a224-9412394931eb")
 	)
 	(text "SK6805 EC10"
 		(exclude_from_sim no)
@@ -1278,7 +1310,7 @@
 		(on_board yes)
 		(dnp no)
 		(uuid "0ed9beda-876d-45e6-bdea-429539acab1a")
-		(property "Reference" "C9"
+		(property "Reference" "C10"
 			(at 46.99 135.8899 0)
 			(effects
 				(font
@@ -1368,7 +1400,7 @@
 		(instances
 			(project ""
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C9")
+					(reference "C10")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
@@ -1380,7 +1412,7 @@
 	)
 	(symbol
 		(lib_id "Device:C")
-		(at 158.75 137.16 0)
+		(at 149.86 137.16 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1388,8 +1420,8 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "11fd8ab6-03df-4aa5-959a-c65fcec8ab54")
-		(property "Reference" "C15"
-			(at 162.56 135.8899 0)
+		(property "Reference" "C16"
+			(at 153.67 135.8899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1398,7 +1430,7 @@
 			)
 		)
 		(property "Value" "0.1u"
-			(at 162.56 138.4299 0)
+			(at 153.67 138.4299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1407,7 +1439,7 @@
 			)
 		)
 		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
-			(at 159.7152 140.97 0)
+			(at 150.8252 140.97 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1416,7 +1448,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 158.75 137.16 0)
+			(at 149.86 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1425,7 +1457,7 @@
 			)
 		)
 		(property "Description" "Unpolarized capacitor"
-			(at 158.75 137.16 0)
+			(at 149.86 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1434,7 +1466,7 @@
 			)
 		)
 		(property "Footprint Check" ""
-			(at 158.75 137.16 0)
+			(at 149.86 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1443,7 +1475,7 @@
 			)
 		)
 		(property "Implementation" ""
-			(at 158.75 137.16 0)
+			(at 149.86 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1452,7 +1484,7 @@
 			)
 		)
 		(property "footprintCheck" "y"
-			(at 158.75 137.16 0)
+			(at 149.86 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1461,7 +1493,7 @@
 			)
 		)
 		(property "implementationCheck" "y"
-			(at 158.75 137.16 0)
+			(at 149.86 137.16 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1478,11 +1510,121 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C15")
+					(reference "C16")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
 					(reference "C7")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:C")
+		(at 167.64 137.16 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "280a42b0-c13c-4389-bcbe-898ded324cbc")
+		(property "Reference" "C8"
+			(at 171.45 135.8899 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "0.1u"
+			(at 171.45 138.4299 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
+			(at 168.6052 140.97 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 167.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "Unpolarized capacitor"
+			(at 167.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Footprint Check" ""
+			(at 167.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Implementation" ""
+			(at 167.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "footprintCheck" "y"
+			(at 167.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "implementationCheck" "y"
+			(at 167.64 137.16 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "2"
+			(uuid "a5b7196f-712b-4589-92da-bfe3f59b57e0")
+		)
+		(pin "1"
+			(uuid "b37bd6d4-20c9-4e04-be1d-dd1e467af79d")
+		)
+		(instances
+			(project "pcb9segCounter"
+				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
+					(reference "C17")
+					(unit 1)
+				)
+				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
+					(reference "C8")
 					(unit 1)
 				)
 			)
@@ -1498,7 +1640,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "44c2187e-30ba-47e3-a291-49500998059c")
-		(property "Reference" "C13"
+		(property "Reference" "C14"
 			(at 118.11 135.8899 0)
 			(effects
 				(font
@@ -1588,7 +1730,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C13")
+					(reference "C14")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
@@ -2004,7 +2146,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7afc616a-5692-46bc-8e9d-b8374e4cfb61")
-		(property "Reference" "C14"
+		(property "Reference" "C15"
 			(at 135.89 135.8899 0)
 			(effects
 				(font
@@ -2094,7 +2236,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C14")
+					(reference "C15")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
@@ -2114,7 +2256,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7c0e2cf0-0d8d-4309-80f8-5edd27f5b93d")
-		(property "Reference" "C10"
+		(property "Reference" "C11"
 			(at 64.77 135.8899 0)
 			(effects
 				(font
@@ -2204,7 +2346,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C10")
+					(reference "C11")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
@@ -2705,7 +2847,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "abfe22d3-c78e-4435-8b8b-d8b2b2420a37")
-		(property "Reference" "C16"
+		(property "Reference" "C18"
 			(at 189.23 135.8899 0)
 			(effects
 				(font
@@ -2795,11 +2937,11 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C16")
+					(reference "C18")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
-					(reference "C8")
+					(reference "C9")
 					(unit 1)
 				)
 			)
@@ -2815,7 +2957,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c266e5a6-98ef-491d-a41f-1a474cf98b24")
-		(property "Reference" "C11"
+		(property "Reference" "C12"
 			(at 82.55 135.8899 0)
 			(effects
 				(font
@@ -2905,7 +3047,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C11")
+					(reference "C12")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"
@@ -3057,7 +3199,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dce4efeb-873f-4ec8-9ea9-593e5cb41e23")
-		(property "Reference" "C12"
+		(property "Reference" "C13"
 			(at 100.33 135.8899 0)
 			(effects
 				(font
@@ -3147,7 +3289,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
-					(reference "C12")
+					(reference "C13")
 					(unit 1)
 				)
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/5c493882-1689-4a6d-b4b4-08608e8edf66"

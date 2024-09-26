@@ -3472,7 +3472,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "423d6fad-088b-4b81-b2fb-401a0d78dd83")
-		(property "Reference" "C17"
+		(property "Reference" "C19"
 			(at 78.74 76.1999 0)
 			(effects
 				(font
@@ -3589,7 +3589,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/517a53d5-7656-4587-9e33-3f758e9574ab"
-					(reference "C17")
+					(reference "C19")
 					(unit 1)
 				)
 			)
