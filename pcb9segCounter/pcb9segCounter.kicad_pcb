@@ -114,9 +114,9 @@
 			(subtractmaskfromsilk no)
 			(outputformat 1)
 			(mirror no)
-			(drillshape 1)
+			(drillshape 0)
 			(scaleselection 1)
-			(outputdirectory "")
+			(outputdirectory "gerber9SegCounter/")
 		)
 	)
 	(net 0 "")
@@ -17215,6 +17215,18 @@
 				(bold yes)
 			)
 			(justify left bottom)
+		)
+	)
+	(gr_text "website: rmartin.io"
+		(at 87.4776 39.4208 0)
+		(layer "F.SilkS")
+		(uuid "6ec38c6b-1c45-4370-8c63-5117191a8102")
+		(effects
+			(font
+				(size 2 2)
+				(thickness 0.3)
+			)
+			(justify top)
 		)
 	)
 	(gr_text "MISO"

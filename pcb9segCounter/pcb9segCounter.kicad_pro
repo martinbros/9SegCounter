@@ -48,6 +48,7 @@
         "silk_text_thickness": 0.1,
         "silk_text_upright": false,
         "zones": {
+          "45_degree_only": false,
           "min_clearance": 0.2032
         }
       },
@@ -112,9 +113,12 @@
         "unconnected_items": "error",
         "unresolved_variable": "error",
         "via_dangling": "warning",
+        "zone_has_empty_net": "error",
         "zones_intersect": "error"
       },
       "rules": {
+        "allow_blind_buried_vias": false,
+        "allow_microvias": false,
         "max_error": 0.005,
         "min_clearance": 0.1524,
         "min_connection": 0.1524,
@@ -214,7 +218,8 @@
           "drill": 0.0
         }
       ],
-      "zones_allow_external_fillets": false
+      "zones_allow_external_fillets": false,
+      "zones_use_no_outline": true
     },
     "ipc2581": {
       "dist": "",
@@ -498,7 +503,7 @@
       "gencad": "",
       "idf": "",
       "netlist": "",
-      "plot": "",
+      "plot": "gerber9SegCounter/",
       "pos_files": "",
       "specctra_dsn": "",
       "step": "",
