@@ -1398,7 +1398,7 @@
 			(uuid "3eef15c3-12f4-4cfd-ad07-1bd40c04a6e1")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/3b31bf75-0830-4091-8274-a65747ea74f2"
 					(reference "C10")
 					(unit 1)
@@ -1530,7 +1530,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "280a42b0-c13c-4389-bcbe-898ded324cbc")
-		(property "Reference" "C8"
+		(property "Reference" "C17"
 			(at 171.45 135.8899 0)
 			(effects
 				(font

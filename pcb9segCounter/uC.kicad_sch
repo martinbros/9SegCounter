@@ -3841,7 +3841,7 @@
 			(uuid "45da1895-7885-426e-9b69-7fabca9154be")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/517a53d5-7656-4587-9e33-3f758e9574ab"
 					(reference "SW1")
 					(unit 1)
@@ -4235,6 +4235,24 @@
 			)
 		)
 		(property "implementationCheck" "y"
+			(at 195.58 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MFG" "Amphenol FCI "
+			(at 195.58 142.24 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MPN" "10129381-906002BLF"
 			(at 195.58 142.24 0)
 			(effects
 				(font
@@ -5126,7 +5144,7 @@
 			(uuid "ad45f617-2f23-4080-9ce6-710da105217a")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/517a53d5-7656-4587-9e33-3f758e9574ab"
 					(reference "R7")
 					(unit 1)
@@ -5533,7 +5551,7 @@
 			(uuid "2af0b89c-1283-4b5d-bc1d-0bd2cd41a125")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe/517a53d5-7656-4587-9e33-3f758e9574ab"
 					(reference "R3")
 					(unit 1)

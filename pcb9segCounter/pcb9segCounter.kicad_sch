@@ -607,7 +607,7 @@
 			(uuid "f2037d1e-e13d-45a6-a140-8b2ba6880c25")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(reference "#PWR01")
 					(unit 1)
@@ -839,7 +839,7 @@
 			(uuid "6f20263a-8579-4d2a-b93c-729527de0d73")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(reference "#PWR02")
 					(unit 1)
@@ -939,7 +939,7 @@
 			)
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(reference "H1")
 					(unit 1)
@@ -1309,7 +1309,7 @@
 			(uuid "dc675a9b-b3fe-4dd5-9e8e-1e6dd4107bd5")
 		)
 		(instances
-			(project ""
+			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
 					(reference "R1")
 					(unit 1)
