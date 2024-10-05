@@ -6,8 +6,8 @@
 DEVICE     = attiny84a
 AVR_DEVICE = t84
 CLOCK      = 8000000
-PROGRAMMER = -c usbtiny
-OBJECTS    = main.o softuart.o
+PROGRAMMER = -c avrispmkII
+OBJECTS    = mainDigit.o
 # 0xe2 for internal 8MHz clock, 0x62 for internal 1MHz:
 # 0xdf for SPI enabled, 0xdc to add brown-out at 4.3V
 FUSES      = -U lfuse:w:0xe2:m -U hfuse:w:0xdc:m # -U efuse:w:0xff:m
