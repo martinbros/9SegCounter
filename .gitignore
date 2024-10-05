@@ -1,1 +1,9 @@
+<<<<<<< HEAD
 /pcb9segCounter/pcb9segCounter-backups/
+=======
+tags
+main.hex
+*.o
+*.elf
+*.d
+>>>>>>> atiny84Neopixel/master
