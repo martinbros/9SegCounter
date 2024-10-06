@@ -4,17 +4,11 @@
 
 #define F_CPU 8000000UL
 
-/* how many pixels are available to write? */
 #define PIXELS 18
-
 #define PIXEL_PORT PORTB
 #define PIXEL_DDR  DDRB
 #define PIXEL_BIT  PORTB2
-/* PA5 is pin 8 */
-/* softuart uses PA1 for RX, PA2 for TX (pins 12 and 11) */
-
 #define SCALE(val) ((val) >> 2)
-
 static uint8_t grb[PIXELS*3];
 
 #define KP_ROW_PORT   PORTA
@@ -22,15 +16,24 @@ static uint8_t grb[PIXELS*3];
 #define KP_COL_PORT   PORTB
 #define KP_COL_DDR    DDRB
 #define KP_COL_PIN    PINB
-
 #define KP_ROWS       2
 #define KP_COLS       2
-
 #define KP_FIRST_ROW  0
 #define KP_FIRST_COL  0
-
 #define KP_ROW_MASK   0b00000011
 #define KP_COL_MASK   0b00000011
+
+#define redScale 0x50
+#define greenScale 0x50
+#define blueScale redScale * 2
+uint8_t colors[][3] = {{0x00, 0x00, blueScale},
+												{0x00, greenScale, 0x00},
+												{0x00, greenScale, blueScale},
+												{redScale, 0x00, 0x00},
+												{redScale, 0x00, blueScale},
+												{redScale, greenScale, 0x00},
+												{redScale, greenScale, blueScale}};
+
 
 void set_pixel(uint8_t i, uint8_t r, uint8_t g, uint8_t b)
 {
@@ -284,12 +287,6 @@ void set_digit(uint8_t digit, uint8_t pos, uint8_t r, uint8_t g, uint8_t b)
 
 uint8_t scan_keypad(void)
 {
-	//Return value to button correlation
-	//1: Ones place increase
-	//2: Ones place decrease
-	//3: Tens place increase
-	//4: Tens place decrease
-
 	uint8_t val = 0x00;
 	uint8_t pos = 0x00;
 	uint8_t row_num;
@@ -316,10 +313,10 @@ uint8_t scan_keypad(void)
 		{
 			if (cols & col_bit)         // this col in active state, found a keypress
 			{
-				//val = (row_num * KP_COLS) + col_num + 1;  // +1 to differentiate from no-key
+				//val = (row_num * KP_COLS) + col_num + 1;  // These two lines to return a value per button press
 				//return val;
 				
-				pos = (row_num * KP_COLS) + col_num;  // +1 to differentiate from no-key
+				pos = (row_num * KP_COLS) + col_num;  // These three lines to return a vlue per button press and multiple button presses
 				val |= 1 << pos;
 				col_bit <<= 1; // next col mask
 			}
@@ -368,44 +365,55 @@ int main(void)
 
 	sei(); /* enable interrupts */
 
-	uint8_t button = 0x05;
+	uint8_t button = 0x00;
+	static uint8_t display = 0x00;
+	uint8_t oneColor = 0x00;
+	uint8_t tenColor = 0x00;
 
 	while (1)
 	{
-		/*
-		for (uint8_t input = 0x08; input < 0x10; input++) 
-		{
-			uint8_t low = input % 0x0A;
-			uint8_t high = input / 0x0A;
-
-			set_digit(input, 0x00, 0x50, 0x00, 0x00);
-			set_digit(input, 0x01, 0x00, 0x50, 0x00);
-			write_pixels();
-			_delay_ms(2000);
-			write_pixels();  // Not sure why this needs to be here
-
-		}
-		*/
-		/*
-		set_digit(0x05, 0x00, 0x00, 0x30, 0x30);
-		set_digit(0x04, 0x01, 0x30, 0x30, 0x00);
-		write_pixels();
-		_delay_ms(1000);
-
-		set_digit(0x00, 0x00, 0x00, 0x30, 0x30);
-		set_digit(0x00, 0x01, 0x30, 0x30, 0x00);
-		write_pixels();
-		_delay_ms(1000);
-		*/
-
 		button = filter_keypad_original();
 
-		if (button != 0x00)
+		switch (button)
 		{
-			set_digit(button, 0x00, 0x00, 0x00, 0x70);
-			write_pixels();
-			write_pixels();
-			//_delay_ms(1000);
+			case 0x01: // ones place increase
+				display += 1;
+				break;
+
+			case 0x02: // ones place decrease
+
+				if (display != 0)
+					display -= 1;
+				else
+					display = 0;
+				break;
+
+			case 0x03: // ones place both button press
+				oneColor += 1;
+				break;
+
+			case 0x04: // tens place increase
+				display += 10;
+				break;
+
+			case 0x08: // tens place decrease
+				if (display > 10)
+					display -= 10;
+				else
+					display = 0;
+				break;
+
+			case 0x0c: // tens place both button press
+				tenColor += 1;
+				break;
 		}
+
+		if (display >= 100)
+			display %= 100;
+
+		set_digit(display % 10, 0, colors[oneColor % 7][0], colors[oneColor % 7][1], colors[oneColor % 7][2]);
+		set_digit(display / 10 % 10, 1, colors[tenColor % 7][0], colors[tenColor % 7][1], colors[tenColor % 7][2]);
+		write_pixels();
+		write_pixels();
 	}
 }
