@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <util/delay.h>
+#include <avr/eeprom.h>
 
 #define F_CPU 8000000UL
 
@@ -23,8 +24,8 @@ static uint8_t grb[PIXELS*3];
 #define KP_ROW_MASK   0b00000011
 #define KP_COL_MASK   0b00000011
 
-#define redScale 0x50
-#define greenScale 0x50
+#define redScale 0x40
+#define greenScale 0x40
 #define blueScale redScale * 2
 uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 												{0x00, greenScale, 0x00},
@@ -349,7 +350,7 @@ uint8_t filter_keypad_original(void)
 		}
 		else
 		{
-			count = 0x08;         // start filtering a new val
+			count = 0x12;         // start filtering a new val
 		}
 	}
 	last_val = val;
@@ -358,18 +359,24 @@ uint8_t filter_keypad_original(void)
 
 int main(void)
 {
-	KP_ROW_DDR |= KP_ROW_MASK;
+	KP_ROW_DDR |= KP_ROW_MASK; // Set outputs for the buttons
 	
-	DDRB = 0x00;
-	PIXEL_DDR |= (1 << PIXEL_BIT); // Set pixel pin output
+	DDRB = 0x00; // Set all of Port B as inputs
+	PIXEL_DDR |= (1 << PIXEL_BIT); // Set pixel pin output on Port B
 
 	sei(); /* enable interrupts */
 
 	uint8_t button = 0x00;
-	static uint8_t display = 0x00;
+	
 	uint8_t oneColor = 0x00;
 	uint8_t tenColor = 0x00;
+	uint8_t address = tenColor * 10 + oneColor;
+	
+	uint8_t display = eeprom_read_byte(address);
+	//uint8_t display = 0x00;
 
+	uint8_t update = 0x01;
+	
 	while (1)
 	{
 		button = filter_keypad_original();
@@ -378,6 +385,7 @@ int main(void)
 		{
 			case 0x01: // ones place increase
 				display += 1;
+				update = 0x01;
 				break;
 
 			case 0x02: // ones place decrease
@@ -386,14 +394,18 @@ int main(void)
 					display -= 1;
 				else
 					display = 0;
+				update = 0x01;
 				break;
 
 			case 0x03: // ones place both button press
 				oneColor += 1;
+				oneColor %= 7;
+				update = 0x02;
 				break;
 
 			case 0x04: // tens place increase
 				display += 10;
+				update = 0x01;
 				break;
 
 			case 0x08: // tens place decrease
@@ -401,19 +413,35 @@ int main(void)
 					display -= 10;
 				else
 					display = 0;
+				update = 0x01;
 				break;
 
 			case 0x0c: // tens place both button press
 				tenColor += 1;
+				tenColor %= 7;
+				update = 0x02;
 				break;
 		}
 
 		if (display >= 100)
 			display %= 100;
 
-		set_digit(display % 10, 0, colors[oneColor % 7][0], colors[oneColor % 7][1], colors[oneColor % 7][2]);
-		set_digit(display / 10 % 10, 1, colors[tenColor % 7][0], colors[tenColor % 7][1], colors[tenColor % 7][2]);
-		write_pixels();
-		write_pixels();
+		address = tenColor * 10 + oneColor;
+
+		if (update)  // update either number or address
+		{
+			if (update == 0x01) // Number is updated
+				eeprom_write_byte(address, display);
+			if (update == 0x02) // Address is updated
+				display = eeprom_read_byte(address);
+
+			set_digit(display % 10, 0, colors[oneColor % 7][0], colors[oneColor % 7][1], colors[oneColor % 7][2]);
+			set_digit(display / 10 % 10, 1, colors[tenColor % 7][0], colors[tenColor % 7][1], colors[tenColor % 7][2]);
+			write_pixels();
+			write_pixels();
+			update = 0x00;
+		}
+
+		
 	}
 }

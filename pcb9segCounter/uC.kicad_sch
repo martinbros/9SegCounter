@@ -2393,6 +2393,17 @@
 		)
 		(uuid "69afe6bd-179f-4303-9fd9-0931e393f0d7")
 	)
+	(text "Accidentally swapped GP1 and GP2 with their intended uses\n	- GP1: Intended to be a direct connection to Neopixels\n	- GP2: Intended to be a clock in with pullup resistor\nFix:\n	- Do not populate R7\n	- 1k pullup resistor between GP1 and 5V"
+		(exclude_from_sim no)
+		(at 223.012 154.432 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9118ec72-c017-487b-8631-ef01e6689cb2")
+	)
 	(text "I2C Reference: https://ladvien.com/attiny-i2c/\nLibrary: https://github.com/svoisen/TinyWire"
 		(exclude_from_sim no)
 		(at 37.592 24.638 0)
@@ -5053,7 +5064,7 @@
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
-		(dnp no)
+		(dnp yes)
 		(fields_autoplaced yes)
 		(uuid "c1f0c37d-7a51-4fab-a2bc-b3dc77dc35f8")
 		(property "Reference" "R7"
