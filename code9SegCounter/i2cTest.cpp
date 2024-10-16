@@ -39,6 +39,15 @@ arduino pin 4 =     OC1B  = PORTB <- _BV(4) = SOIC pin 3 (Analog 2)
 #define TWI_RX_BUFFER_SIZE ( 16 )
 #endif
 
+#include <avr/io.h>
+#include <util/delay.h>
+#include <avr/interrupt.h>
+#define PIXELS 18
+#define PIXEL_PORT PORTB
+#define PIXEL_DDR  DDRB
+#define PIXEL_BIT  PORTB2
+#define SCALE(val) ((val) >> 2)
+static uint8_t grb[PIXELS*3];
 
 volatile uint8_t i2c_regs[] =
 {
@@ -49,7 +58,7 @@ volatile uint8_t i2c_regs[] =
 };
 
 
-volatile byte reg_position;
+volatile uint8_t reg_position;
 void requestEvent()
 {  
     TinyWireS.send(i2c_regs[reg_position]);
@@ -57,16 +66,58 @@ void requestEvent()
     reg_position = (reg_position+1) % sizeof(i2c_regs);
 }
 
+void set_pixel(uint8_t i, uint8_t r, uint8_t g, uint8_t b)
+{
+  uint8_t offset = (i % PIXELS) * 3;
+  grb[offset] = SCALE(g);
+  grb[offset+1] = SCALE(r);
+  grb[offset+2] = SCALE(b);
+}
+
+void write_pixels(void) 
+{
+  cli(); /* disable interrupts */
+  asm volatile(
+      "1:"                    "\n\t" /* outer loop: iterate bytes */
+      "ld %[byte], %a[grb]+"  "\n\t"
+      "ldi %[bits], 8"        "\n\t"
+      "2:"                    "\n\t" /* inner loop: write a byte */
+      "sbi %[port], %[pin]"   "\n\t" /* t = 0 */
+      "sbrs %[byte], 7"       "\n\t" /* 2c if skip, 1c if no skip */
+      "cbi %[port], %[pin]"   "\n\t" /* 2c, t1 = 375ns */
+      "lsl %[byte]"           "\n\t" /* 1c, t = 500 (0) / 375 (1) */
+      "dec %[bits]"           "\n\t" /* 1c, t = 625 (0) / 500 (1) */
+      "nop"                   "\n\t" /* 1c, t = 750 (0) / 625 (1) */
+      "cbi %[port], %[pin]"   "\n\t" /* 2c, t2= 875 (0) / 750 (1) */
+      "brne 2b"               "\n\t" /* 2c if skip, 1c if not */
+      "dec %[nbytes]"         "\n\t"
+      "brne 1b"               "\n\t"
+      :: [nbytes]  "d" (PIXELS * 3)  /* how many pixels to write */
+      ,  [grb]     "w" (grb)         /* pointer to grb byte array */
+      ,  [byte]    "d" (16)
+      ,  [bits]    "d" (17)
+      ,  [port]    "i" (_SFR_IO_ADDR(PIXEL_PORT))
+      ,  [pin]     "i" (PIXEL_BIT)
+      );
+  _delay_us(10);
+  sei(); /* enable interrupts */
+}
 
 void blinkn(uint8_t blinks)
 {
-    digitalWrite(3, HIGH);
+    set_pixel(0, 0x50, 0x00, 0x00);
+    write_pixels();
+    write_pixels();
     while(blinks--)
     {
-        digitalWrite(3, LOW);
-        delay(50);
-        digitalWrite(3, HIGH);
-        delay(100);
+        set_pixel(0, 0x50, 0x00, 0x00);
+        write_pixels();
+        write_pixels();
+        _delay_ms(50);
+        set_pixel(0, 0x00, 0x00, 0x00);
+        write_pixels();
+        write_pixels();
+        _delay_ms(100);
     }
 }
 
@@ -102,35 +153,23 @@ void receiveEvent(uint8_t howMany)
     }
 }
 
-
-void setup()
-{
-    // TODO: Tri-state this and wait for input voltage to stabilize 
-    pinMode(3, OUTPUT); // OC1B-, Arduino pin 3, ADC
-    digitalWrite(3, LOW); // Note that this makes the led turn on, it's wire this way to allow for the voltage sensing above.
-
-    pinMode(1, OUTPUT); // OC1A, also The only HW-PWM -pin supported by the tiny core analogWrite
-
-    /**
-     * Reminder: taking care of pull-ups is the masters job
-     */
+int main(void)
+{   
+    DDRB = 0x00; // Set all of Port B as inputs
+    PIXEL_DDR |= (1 << PIXEL_BIT); // Set pixel pin output on Port B
 
     TinyWireS.begin(I2C_SLAVE_ADDRESS);
     TinyWireS.onReceive(receiveEvent);
     TinyWireS.onRequest(requestEvent);
 
-    
-    // Whatever other setup routines ?
-    
-    digitalWrite(3, HIGH);
+    while(1)
+    {
+        /*
+        * This is the only way we can detect stop condition (http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&p=984716&sid=82e9dc7299a8243b86cf7969dd41b5b5#984716)
+        * it needs to be called in a very tight loop in order not to miss any.
+        * It will call the function registered via TinyWireS.onReceive(); if there is data in the buffer on stop.
+        */
+        TinyWireS_stop_check();
+    }
 }
 
-void loop()
-{
-    /**
-     * This is the only way we can detect stop condition (http://www.avrfreaks.net/index.php?name=PNphpBB2&file=viewtopic&p=984716&sid=82e9dc7299a8243b86cf7969dd41b5b5#984716)
-     * it needs to be called in a very tight loop in order not to miss any.
-     * It will call the function registered via TinyWireS.onReceive(); if there is data in the buffer on stop.
-     */
-    TinyWireS_stop_check();
-}

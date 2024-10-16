@@ -41,7 +41,7 @@
 
 
 # MCU name
-MCU = attiny84a
+MCU = attiny84
 mcuDude = attiny84a
 
 
@@ -71,7 +71,7 @@ FORMAT = ihex
 
 
 # Target file name (without extension).
-TARGET = mainDigit
+TARGET = i2cTest
 
 
 # Object files directory
@@ -81,11 +81,11 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c
+SRC = usiTwiSlave.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = 
+CPPSRC = $(TARGET).cpp TinyWireS.cpp
 
 
 # List Assembler source files here.
