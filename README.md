@@ -41,11 +41,12 @@ Using the buttons, a user can store 49 unique numbers in non-volatile memory. Ea
 
 - 2 8-bit messages: first byte is a memory location, second byte is the data to be stored
 
-### GP2 Interface
+### GP1 Interface
 
-- GP1 is normally pulled high. By driving GP2 low, the displayed number will be incremented by 1
-- Maximum clock speed is XXXX 
+- GP1 is normally pulled high. By driving GP1 low, the displayed number will be incremented by 1
+- Max clock speed is ~150Hz
+- Displayed number is not stored in memory 
 
-## GP1 Interface
+## GP2 Interface
 
 - GP2 is connected directly to the first Neopixel and is terminated with a 470 ohm resistor. If you desire, feel free to implement the Neopixel protocol and set the segments however you like! Use the reference photo below for the sequence of the neopixels.

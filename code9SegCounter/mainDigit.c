@@ -35,6 +35,8 @@ uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 												{redScale, greenScale, 0x00},
 												{redScale, greenScale, blueScale}};
 
+volatile uint8_t display = 0x00;
+volatile uint8_t update = 0x01;
 
 void set_pixel(uint8_t i, uint8_t r, uint8_t g, uint8_t b)
 {
@@ -357,12 +359,30 @@ uint8_t filter_keypad_original(void)
 	return filtered_val;
 }
 
+ISR(PCINT0_vect){ // Interrupt for the clock pin
+	
+	if (!(PINA & (1<<PINA7))) // if PINA7 is low
+	{
+		display ++;
+		display %= 100;
+		update = 0x04;
+	}
+	
+	//display ++;
+	//update = 0x04;
+}
+
 int main(void)
 {
 	KP_ROW_DDR |= KP_ROW_MASK; // Set outputs for the buttons
+	DDRA &= ~(1<<DDA7); // Set PA7 as an input, SAO Clock in
+	PORTA |= (1<<DDA7); // Enable PA7 pull-ups, SAO Clock in
 	
 	DDRB = 0x00; // Set all of Port B as inputs
 	PIXEL_DDR |= (1 << PIXEL_BIT); // Set pixel pin output on Port B
+
+	PCMSK0 |= (1<<PCINT7); // Set PA7 as an interrupt trigger
+	GIMSK |= (1<<PCIE0); // Set any change to pins as a interrupt trigger
 
 	sei(); /* enable interrupts */
 
@@ -372,10 +392,8 @@ int main(void)
 	uint8_t tenColor = 0x00;
 	uint8_t address = tenColor * 10 + oneColor;
 	
-	uint8_t display = eeprom_read_byte(address);
-	//uint8_t display = 0x00;
-
-	uint8_t update = 0x01;
+	display = eeprom_read_byte(address);
+	//uint8_t update = 0x01;
 	
 	while (1)
 	{
