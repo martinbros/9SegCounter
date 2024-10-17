@@ -110,15 +110,27 @@ void blinkn(uint8_t blinks)
     write_pixels();
     while(blinks--)
     {
-        set_pixel(0, 0x50, 0x00, 0x00);
-        write_pixels();
-        write_pixels();
-        _delay_ms(50);
         set_pixel(0, 0x00, 0x00, 0x00);
         write_pixels();
         write_pixels();
-        _delay_ms(100);
+        _delay_ms(500);
+        set_pixel(0, 0x00, 0x50, 0x00);
+        write_pixels();
+        write_pixels();
+        _delay_ms(500);
     }
+}
+
+void clear_pixels(void)
+{
+    for (uint8_t idx = 0x00; idx < PIXELS*3; idx++) 
+    {
+        //grb[idx] = SCALE(0x00);
+        grb[idx] = 0x00;
+    }
+        
+    write_pixels();
+    _delay_ms(10);
 }
 
 /**
@@ -158,9 +170,23 @@ int main(void)
     DDRB = 0x00; // Set all of Port B as inputs
     PIXEL_DDR |= (1 << PIXEL_BIT); // Set pixel pin output on Port B
 
+    clear_pixels();
+
+    set_pixel(1, 0x50, 0x00, 0x00);
+    write_pixels();
+    write_pixels();
     TinyWireS.begin(I2C_SLAVE_ADDRESS);
+    set_pixel(2, 0x50, 0x00, 0x00);
+    write_pixels();
+    write_pixels();
     TinyWireS.onReceive(receiveEvent);
+    set_pixel(3, 0x50, 0x00, 0x00);
+    write_pixels();
+    write_pixels();
     TinyWireS.onRequest(requestEvent);
+    set_pixel(4, 0x50, 0x00, 0x00);
+    write_pixels();
+    write_pixels();
 
     while(1)
     {
@@ -169,7 +195,13 @@ int main(void)
         * it needs to be called in a very tight loop in order not to miss any.
         * It will call the function registered via TinyWireS.onReceive(); if there is data in the buffer on stop.
         */
+        set_pixel(0, 0xF0, 0x00, 0x00);
+        write_pixels();
+        write_pixels();
         TinyWireS_stop_check();
+        set_pixel(0, 0x00, 0x00, 0x00);
+        write_pixels();
+        write_pixels();
     }
 }
 
