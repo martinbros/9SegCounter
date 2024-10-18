@@ -59,11 +59,21 @@ volatile uint8_t i2c_regs[] =
 
 
 volatile uint8_t reg_position;
+const uint8_t reg_size=sizeof(i2c_regs);
+
+/**
+ * This is called for each read request we receive, never put more than one byte of data (with TinyWireS.send) to the 
+ * send-buffer when using this callback
+ */
 void requestEvent()
 {  
     TinyWireS.send(i2c_regs[reg_position]);
     // Increment the reg position on each read, and loop back to zero
-    reg_position = (reg_position+1) % sizeof(i2c_regs);
+    reg_position++;
+    if (reg_position >= reg_size)
+    {
+        reg_position = 0;
+    }
 }
 
 void set_pixel(uint8_t i, uint8_t r, uint8_t g, uint8_t b)
@@ -133,10 +143,12 @@ void clear_pixels(void)
     _delay_ms(10);
 }
 
+
 /**
  * The I2C data received -handler
  *
- * This needs to complete before the next incoming transaction (start, data, restart/stop) does 
+ * This needs to complete before the next incoming transaction (start, data, restart/stop) on the bus does
+ * so be quick, set flags for long running tasks to be called from the mainloop instead of running them directly,
  */
 void receiveEvent(uint8_t howMany)
 {
@@ -160,8 +172,12 @@ void receiveEvent(uint8_t howMany)
     }
     while(howMany--)
     {
-        i2c_regs[reg_position%sizeof(i2c_regs)] = TinyWireS.receive();
+        i2c_regs[reg_position] = TinyWireS.receive();
         reg_position++;
+        if (reg_position >= reg_size)
+        {
+            reg_position = 0;
+        }
     }
 }
 
