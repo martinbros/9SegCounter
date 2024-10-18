@@ -349,6 +349,9 @@ REMOVE = rm -f
 REMOVEDIR = rm -rf
 COPY = cp
 WINSHELL = cmd
+PREFLASH = preflash.bat
+POSTFLASH = postflash.bat
+SLEEPY = sleep 1
 
 
 # Define Messages
@@ -443,11 +446,21 @@ sizeafter:
 gccversion : 
 	@$(CC) --version
 
-
+# disable bus pirate, program, enable i2c
+flash: preflashcmd program postflashcmd
 
 # Program the device.  
 program: $(TARGET).hex $(TARGET).eep
 	$(AVRDUDE) $(AVRDUDE_FLAGS) $(AVRDUDE_WRITE_FLASH) $(AVRDUDE_WRITE_EEPROM)
+
+preflashcmd: 
+	@echo
+	$(PREFLASH)
+	$(SLEEPY)
+
+postflashcmd: 
+	@echo
+	$(POSTFLASH)
 
 
 # Generate avr-gdb config/init file which does the following:

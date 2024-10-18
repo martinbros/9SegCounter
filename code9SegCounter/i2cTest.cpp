@@ -172,25 +172,9 @@ int main(void)
 
     clear_pixels();
 
-    set_pixel(1, 0x50, 0x00, 0x00);
-    write_pixels();
-    write_pixels();
-    _delay_ms(100);
     TinyWireS.begin(I2C_SLAVE_ADDRESS);
-    set_pixel(2, 0x50, 0x00, 0x00);
-    write_pixels();
-    write_pixels();
-    _delay_ms(100);
     TinyWireS.onReceive(receiveEvent);
-    set_pixel(3, 0x50, 0x00, 0x00);
-    write_pixels();
-    write_pixels();
-    _delay_ms(100);
     TinyWireS.onRequest(requestEvent);
-    set_pixel(4, 0x50, 0x00, 0x00);
-    write_pixels();
-    write_pixels();
-    _delay_ms(100);
 
     while(1)
     {
@@ -199,8 +183,8 @@ int main(void)
         * it needs to be called in a very tight loop in order not to miss any.
         * It will call the function registered via TinyWireS.onReceive(); if there is data in the buffer on stop.
         */
-        //TinyWireS_stop_check();
-        TinyWireS.send(0xAA);
+        TinyWireS_stop_check();
+        //TinyWireS.send(0xAA);
     }
 }
 
