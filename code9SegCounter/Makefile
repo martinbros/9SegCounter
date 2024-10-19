@@ -81,7 +81,7 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c
+SRC = $(TARGET).c NineSegSao.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
