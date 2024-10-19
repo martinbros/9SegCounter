@@ -71,7 +71,7 @@ FORMAT = ihex
 
 
 # Target file name (without extension).
-TARGET = i2cTest
+TARGET = mainDigit
 
 
 # Object files directory
@@ -81,11 +81,11 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = usiTwiSlave.c
+SRC = $(TARGET).c NineSegSao.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = $(TARGET).cpp TinyWireS.cpp
+CPPSRC = 
 
 
 # List Assembler source files here.

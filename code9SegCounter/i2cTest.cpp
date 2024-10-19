@@ -199,7 +199,7 @@ int main(void)
         * it needs to be called in a very tight loop in order not to miss any.
         * It will call the function registered via TinyWireS.onReceive(); if there is data in the buffer on stop.
         */
-        TinyWireS_stop_check();
+        //TinyWireS_stop_check();
         //TinyWireS.send(0xAA);
     }
 }
