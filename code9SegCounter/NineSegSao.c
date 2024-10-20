@@ -344,7 +344,7 @@ uint8_t filter_keypad_original(void)
 	return filtered_val;
 }
 
-uint8_t initializeIO(void)
+void initializeIO(void)
 {
 	KP_ROW_DDR |= KP_ROW_MASK; // Set outputs for the buttons
 	DDRA &= ~(1<<DDA7); // Set PA7 as an input, SAO Clock in
