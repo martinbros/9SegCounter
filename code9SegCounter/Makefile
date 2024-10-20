@@ -81,11 +81,11 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c NineSegSao.c
+SRC =  NineSegSao.c usiTwiSlave.c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = 
+CPPSRC = $(TARGET).cpp TinyWireS.cpp
 
 
 # List Assembler source files here.

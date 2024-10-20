@@ -1,5 +1,5 @@
-#ifndef NINESEGSAO_H_
-#define NINESEGSAO_H_
+#ifndef NineSegSao_h
+#define NineSegSao_h
 
 #include <inttypes.h>
 
