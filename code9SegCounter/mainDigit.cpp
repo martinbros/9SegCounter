@@ -27,7 +27,7 @@ uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 						{redScale, greenScale, blueScale}};
 
 volatile uint8_t display = 0x00;
-volatile uint8_t update = 0x01;
+volatile uint8_t update = 0x00;
 
 void receiveEvent(uint8_t howMany)
 {
@@ -77,8 +77,8 @@ int main(void)
 	uint8_t tenColor = 0x00;
 	uint8_t address = tenColor * 10 + oneColor;
 	
-	display = eeprom_read_byte(&address);
-	//uint8_t update = 0x01;
+	//display = eeprom_read_byte(&address);
+	clear_pixels();
 	
 	while (1)
 	{
