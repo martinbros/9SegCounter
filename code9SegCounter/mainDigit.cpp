@@ -29,6 +29,19 @@ uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 volatile uint8_t display = 0x00;
 volatile uint8_t update = 0x00;
 
+volatile uint8_t i2c_regs[] =
+{
+    0x01, 
+    0x02, 
+    0x03, 
+    0x04,
+    0x05,
+    0x06 
+};
+const uint8_t reg_size=sizeof(i2c_regs);
+volatile uint8_t reg_position;
+volatile uint8_t sentSize = 0x00;
+
 void receiveEvent(uint8_t howMany)
 {
     if (howMany < 1)
@@ -42,8 +55,19 @@ void receiveEvent(uint8_t howMany)
         return;
     }
 
-    display = TinyWireS.receive();
-    update = 0x04;
+    reg_position = 0x00;
+    sentSize = howMany;
+    while(howMany--)
+    {
+        i2c_regs[reg_position] = TinyWireS.receive();
+        reg_position++;
+        if (reg_position >= reg_size)
+        {
+            reg_position = 0;
+        }
+    }
+
+    //update = 0x03;
 }
 
 
@@ -77,7 +101,7 @@ int main(void)
 	uint8_t tenColor = 0x00;
 	uint8_t address = tenColor * 10 + oneColor;
 	
-	//display = eeprom_read_byte(&address);
+	//display = eeprom_read_byte(&address);            <NEEDS TO BE IN THE FINAL CODE
 	clear_pixels();
 	
 	while (1)
@@ -137,6 +161,8 @@ int main(void)
 				eeprom_write_byte(&address, display);
 			if (update == 0x02) // Address is updated
 				display = eeprom_read_byte(&address);
+			if (update == 0x03)
+				display = i2c_regs[0];
 
 			set_digit(display % 10, 0, colors[oneColor % 7][0], colors[oneColor % 7][1], colors[oneColor % 7][2]);
 			set_digit(display / 10 % 10, 1, colors[tenColor % 7][0], colors[tenColor % 7][1], colors[tenColor % 7][2]);
