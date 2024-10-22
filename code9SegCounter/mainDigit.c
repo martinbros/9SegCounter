@@ -40,8 +40,9 @@ int main(void)
 	
 	uint8_t oneColor = 0x00;
 	uint8_t tenColor = 0x00;
-	uint8_t address = tenColor * 10 + oneColor;
-	
+	uint8_t *address;
+	address = (uint8_t *) (tenColor * 10 + oneColor);
+
 	display = eeprom_read_byte(address);
 	//uint8_t update = 0x01;
 	
@@ -94,7 +95,7 @@ int main(void)
 		if (display >= 100)
 			display %= 100;
 
-		address = tenColor * 10 + oneColor;
+		address = (uint8_t *) (tenColor * 10 + oneColor);
 
 		if (update)  // update either number or address
 		{
