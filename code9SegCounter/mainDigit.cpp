@@ -27,7 +27,7 @@ uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 						{redScale, greenScale, blueScale}};
 
 volatile uint8_t display = 0x00;
-volatile uint8_t update = 0x00;
+volatile uint8_t update = 0x02;
 
 volatile uint8_t i2c_regs[] =
 {
@@ -99,11 +99,15 @@ int main(void)
 	
 	uint8_t oneColorIdx = 0x00;
 	uint8_t tenColorIdx = 0x00;
-	uint8_t *address;
-	address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 	
-	//display = eeprom_read_byte(address);            <NEEDS TO BE IN THE FINAL CODE
-	clear_pixels();
+	uint8_t oneRedColor = colors[oneColorIdx][0];
+	uint8_t oneBluColor = colors[oneColorIdx][1];
+	uint8_t oneGrnColor = colors[oneColorIdx][2];
+	uint8_t tenRedColor = colors[oneColorIdx][0];
+	uint8_t tenBluColor = colors[oneColorIdx][1];
+	uint8_t tenGrnColor = colors[oneColorIdx][2];
+
+	uint8_t *address;
 	
 	while (1)
 	{
@@ -128,6 +132,11 @@ int main(void)
 			case 0x03: // ones place both button press
 				oneColorIdx += 1;
 				oneColorIdx %= 7;
+
+				oneRedColor = colors[oneColorIdx][0];
+				oneGrnColor = colors[oneColorIdx][1];
+				oneBluColor = colors[oneColorIdx][2];
+				
 				update = 0x02;
 				break;
 
@@ -147,7 +156,54 @@ int main(void)
 			case 0x0c: // tens place both button press
 				tenColorIdx += 1;
 				tenColorIdx %= 7;
+
+				tenRedColor = colors[tenColorIdx][0];
+				tenGrnColor = colors[tenColorIdx][1];
+				tenBluColor = colors[tenColorIdx][2];
+
 				update = 0x02;
+				break;
+		}
+
+		switch(sentSize)
+		{
+			case 0x01:
+				display = i2c_regs[0];
+				sentSize = 0x00;
+				break;
+			
+			case 0x02:
+				sentSize = 0x00;
+				break;
+			
+			case 0x03:
+				oneRedColor = i2c_regs[0];
+				oneGrnColor = i2c_regs[1];
+				oneBluColor = i2c_regs[2];
+
+				tenRedColor = i2c_regs[0];
+				tenGrnColor = i2c_regs[1];
+				tenBluColor = i2c_regs[2];
+
+				sentSize = 0x00;
+				update = 0x00;
+				break;
+			
+			case 0x04:
+				sentSize = 0x00;
+				break;
+			
+			case 0x06:
+				oneRedColor = i2c_regs[0];
+				oneGrnColor = i2c_regs[1];
+				oneBluColor = i2c_regs[2];
+
+				tenRedColor = i2c_regs[3];
+				tenGrnColor = i2c_regs[4];
+				tenBluColor = i2c_regs[5];
+
+				sentSize = 0x00;
+				update = 0x00;
 				break;
 		}
 
@@ -162,11 +218,9 @@ int main(void)
 				eeprom_write_byte(address, display);
 			if (update == 0x02) // Address is updated
 				display = eeprom_read_byte(address);
-			if (update == 0x03)
-				display = i2c_regs[0];
 
-			set_digit(display % 10, 0, colors[oneColorIdx][0], colors[oneColorIdx][1], colors[oneColorIdx][2]);
-			set_digit(display / 10 % 10, 1, colors[tenColorIdx][0], colors[tenColorIdx][1], colors[tenColorIdx][2]);
+			set_digit(display % 10, 0, oneRedColor, oneGrnColor, oneBluColor);
+			set_digit(display / 10 % 10, 1, tenRedColor, tenGrnColor, tenBluColor);
 			write_pixels();
 			write_pixels();
 			update = 0x00;
