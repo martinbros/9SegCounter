@@ -206,7 +206,7 @@ int main(void)
 			
 			case 0x04: // Four bytes via I2C
 				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]); // Update address from message
-				eeprom_write_byte(address, i2c_regs[3]); // Write third byte to EEPROM
+				eeprom_write_byte(address, i2c_regs[2]); // Write third byte to EEPROM
 				
 				sentSize = 0x00;
 				update = 0x00;  // Do not update display
