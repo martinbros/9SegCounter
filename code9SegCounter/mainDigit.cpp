@@ -67,7 +67,7 @@ void receiveEvent(uint8_t howMany)
         }
     }
 
-    //update = 0x03;
+    update = 0x03;
 }
 
 
@@ -97,11 +97,12 @@ int main(void)
 
 	uint8_t button = 0x00;
 	
-	uint8_t oneColor = 0x00;
-	uint8_t tenColor = 0x00;
-	uint8_t address = tenColor * 10 + oneColor;
+	uint8_t oneColorIdx = 0x00;
+	uint8_t tenColorIdx = 0x00;
+	uint8_t *address;
+	address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 	
-	//display = eeprom_read_byte(&address);            <NEEDS TO BE IN THE FINAL CODE
+	//display = eeprom_read_byte(address);            <NEEDS TO BE IN THE FINAL CODE
 	clear_pixels();
 	
 	while (1)
@@ -125,8 +126,8 @@ int main(void)
 				break;
 
 			case 0x03: // ones place both button press
-				oneColor += 1;
-				oneColor %= 7;
+				oneColorIdx += 1;
+				oneColorIdx %= 7;
 				update = 0x02;
 				break;
 
@@ -144,8 +145,8 @@ int main(void)
 				break;
 
 			case 0x0c: // tens place both button press
-				tenColor += 1;
-				tenColor %= 7;
+				tenColorIdx += 1;
+				tenColorIdx %= 7;
 				update = 0x02;
 				break;
 		}
@@ -153,24 +154,24 @@ int main(void)
 		if (display >= 100)
 			display %= 100;
 
-		address = tenColor * 10 + oneColor;
+		address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 
 		if (update)  // update either number or address
 		{
 			if (update == 0x01) // Number is updated
-				eeprom_write_byte(&address, display);
+				eeprom_write_byte(address, display);
 			if (update == 0x02) // Address is updated
-				display = eeprom_read_byte(&address);
+				display = eeprom_read_byte(address);
 			if (update == 0x03)
 				display = i2c_regs[0];
 
-			set_digit(display % 10, 0, colors[oneColor % 7][0], colors[oneColor % 7][1], colors[oneColor % 7][2]);
-			set_digit(display / 10 % 10, 1, colors[tenColor % 7][0], colors[tenColor % 7][1], colors[tenColor % 7][2]);
+			set_digit(display % 10, 0, colors[oneColorIdx][0], colors[oneColorIdx][1], colors[oneColorIdx][2]);
+			set_digit(display / 10 % 10, 1, colors[tenColorIdx][0], colors[tenColorIdx][1], colors[tenColorIdx][2]);
 			write_pixels();
 			write_pixels();
 			update = 0x00;
 		}
 
-		
+		TinyWireS_stop_check();
 	}
 }
