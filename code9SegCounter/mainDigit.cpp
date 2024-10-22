@@ -70,8 +70,6 @@ void receiveEvent(uint8_t howMany)
     update = 0x03;
 }
 
-
-
 ISR(PCINT0_vect){ // Interrupt for the clock pin
 	
 	if (!(PINA & (1<<PINA7))) // if PINA7 is low
@@ -97,18 +95,20 @@ int main(void)
 
 	uint8_t button = 0x00;
 	
-	uint8_t oneColorIdx = 0x00;
-	uint8_t tenColorIdx = 0x00;
+	uint16_t oneColorIdx = 0x00;
+	uint16_t tenColorIdx = 0x00;
 	
 	uint8_t oneRedColor = colors[oneColorIdx][0];
-	uint8_t oneBluColor = colors[oneColorIdx][1];
-	uint8_t oneGrnColor = colors[oneColorIdx][2];
+	uint8_t oneGrnColor = colors[oneColorIdx][1];
+	uint8_t oneBluColor = colors[oneColorIdx][2];
 	uint8_t tenRedColor = colors[oneColorIdx][0];
-	uint8_t tenBluColor = colors[oneColorIdx][1];
-	uint8_t tenGrnColor = colors[oneColorIdx][2];
+	uint8_t tenGrnColor = colors[oneColorIdx][1];
+	uint8_t tenBluColor = colors[oneColorIdx][2];
 
 	uint8_t *address;
-	
+	address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
+
+
 	while (1)
 	{
 		button = filter_keypad_original();
@@ -136,6 +136,8 @@ int main(void)
 				oneRedColor = colors[oneColorIdx][0];
 				oneGrnColor = colors[oneColorIdx][1];
 				oneBluColor = colors[oneColorIdx][2];
+
+				address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 				
 				update = 0x02;
 				break;
@@ -161,9 +163,13 @@ int main(void)
 				tenGrnColor = colors[tenColorIdx][1];
 				tenBluColor = colors[tenColorIdx][2];
 
+				address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
+
 				update = 0x02;
 				break;
 		}
+
+		
 
 		switch(sentSize)
 		{
@@ -173,7 +179,9 @@ int main(void)
 				break;
 			
 			case 0x02:
+				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]);
 				sentSize = 0x00;
+				update = 0x02;
 				break;
 			
 			case 0x03:
@@ -194,13 +202,13 @@ int main(void)
 				break;
 			
 			case 0x06:
-				oneRedColor = i2c_regs[0];
-				oneGrnColor = i2c_regs[1];
-				oneBluColor = i2c_regs[2];
+				tenRedColor = i2c_regs[0];
+				tenGrnColor = i2c_regs[1];
+				tenBluColor = i2c_regs[2];
 
-				tenRedColor = i2c_regs[3];
-				tenGrnColor = i2c_regs[4];
-				tenBluColor = i2c_regs[5];
+				oneRedColor = i2c_regs[3];
+				oneGrnColor = i2c_regs[4];
+				oneBluColor = i2c_regs[5];
 
 				sentSize = 0x00;
 				update = 0x00;
@@ -209,8 +217,7 @@ int main(void)
 
 		if (display >= 100)
 			display %= 100;
-
-		address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
+		
 
 		if (update)  // update either number or address
 		{
