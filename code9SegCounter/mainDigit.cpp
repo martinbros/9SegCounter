@@ -117,7 +117,7 @@ int main(void)
 
 	while (1)
 	{
-		button = filter_keypad_original();
+		button = filter_keypad_original();  // Get button press status
 
 		switch (button)
 		{
@@ -179,18 +179,19 @@ int main(void)
 
 		switch(sentSize)
 		{
-			case 0x01:
-				display = i2c_regs[0];
+			case 0x01:  // One byte via I2C
+				display = i2c_regs[0];  // Update Display
 				sentSize = 0x00;
 				break;
 			
-			case 0x02:
-				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]);
+			case 0x02:  // Two bytes via I2C
+				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]);  // Update address from message
 				sentSize = 0x00;
-				update = 0x02;
+				update = 0x02;  // Update Display from data at address
 				break;
 			
-			case 0x03:
+			case 0x03:  // Three bytes via I2C
+				// Set Digits color
 				oneRedColor = i2c_regs[0];
 				oneGrnColor = i2c_regs[1];
 				oneBluColor = i2c_regs[2];
@@ -200,18 +201,19 @@ int main(void)
 				tenBluColor = i2c_regs[2];
 
 				sentSize = 0x00;
-				update = 0x00;
+				update = 0x00;  // Do not update display
 				break;
 			
-			case 0x04:
-				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]);
-				eeprom_write_byte(address, i2c_regs[3]);
+			case 0x04: // Four bytes via I2C
+				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]); // Update address from message
+				eeprom_write_byte(address, i2c_regs[3]); // Write third byte to EEPROM
 				
 				sentSize = 0x00;
-				update = 0x00;
+				update = 0x00;  // Do not update display
 				break;
 			
-			case 0x06:
+			case 0x06:  // Six bytes via I2C
+				// Set Digits color
 				tenRedColor = i2c_regs[0];
 				tenGrnColor = i2c_regs[1];
 				tenBluColor = i2c_regs[2];
@@ -221,7 +223,7 @@ int main(void)
 				oneBluColor = i2c_regs[5];
 
 				sentSize = 0x00;
-				update = 0x00;
+				update = 0x00; // Do not update display
 				break;
 		}
 
@@ -231,16 +233,16 @@ int main(void)
 
 		if (update)  // update either number or address
 		{
-			if (update == 0x01) // Number is updated
+			if (update == 0x01) // Write number to EEPROM
 				eeprom_write_byte(address, display);
-			if (update == 0x02) // Address is updated
+			if (update == 0x02) // Pull number from EEPROM
 				display = eeprom_read_byte(address);
 
-			set_digit(display % 10, 0, oneRedColor, oneGrnColor, oneBluColor);
-			set_digit(display / 10 % 10, 1, tenRedColor, tenGrnColor, tenBluColor);
+			set_digit(display % 10, 0, oneRedColor, oneGrnColor, oneBluColor);  // Set ones place number
+			set_digit(display / 10 % 10, 1, tenRedColor, tenGrnColor, tenBluColor);  //Set tens place number
 			write_pixels();
 			write_pixels();
-			update = 0x00;
+			update = 0x00;  // do not enter update
 		}
 
 		TinyWireS_stop_check();
