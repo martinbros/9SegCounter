@@ -28,6 +28,7 @@ uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 
 volatile uint8_t display = 0x00;
 volatile uint8_t update = 0x02;
+uint8_t *address;
 
 volatile uint8_t i2c_regs[] =
 {
@@ -70,6 +71,11 @@ void receiveEvent(uint8_t howMany)
     update = 0x03;
 }
 
+void requestEvent()
+{  
+    TinyWireS.send(eeprom_read_byte(address));
+}
+
 ISR(PCINT0_vect){ // Interrupt for the clock pin
 	
 	if (!(PINA & (1<<PINA7))) // if PINA7 is low
@@ -89,7 +95,7 @@ int main(void)
 
 	TinyWireS.begin(I2C_SLAVE_ADDRESS);
     TinyWireS.onReceive(receiveEvent);
-    //TinyWireS.onRequest(requestEvent);
+    TinyWireS.onRequest(requestEvent);
 
 	sei(); /* enable interrupts */
 
@@ -105,7 +111,7 @@ int main(void)
 	uint8_t tenGrnColor = colors[oneColorIdx][1];
 	uint8_t tenBluColor = colors[oneColorIdx][2];
 
-	uint8_t *address;
+	//uint8_t *address;
 	address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 
 
@@ -198,7 +204,11 @@ int main(void)
 				break;
 			
 			case 0x04:
+				address = (uint8_t *) ((i2c_regs[0] << 8) | i2c_regs[1]);
+				eeprom_write_byte(address, i2c_regs[3]);
+				
 				sentSize = 0x00;
+				update = 0x00;
 				break;
 			
 			case 0x06:

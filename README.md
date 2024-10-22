@@ -31,15 +31,12 @@ Using the buttons, a user can store 49 unique numbers in non-volatile memory. Ea
 
 - 3 8-bit messages: set the RGB values of the digits to be displayed
 
-- 6 8-bit messages: set the RGB values of the first digit and then second digit to be displayed
+- 6 8-bit messages: set the RGB values of the tens place digit and then ones place digit to be displayed
 
 
+- 2 8-bit message: Address pointer from which the display will pull the data stored in EEPROM and update the display to show that number
 
-- Address is XXX
-
-- 1 8-bit message: Address pointer from which the display will pull the data stored in EEPROM and update the display to show that number
-
-- 2 8-bit messages: first byte is a memory location, second byte is the data to be stored
+- 4 8-bit messages: first 2 bytes is a memory location, third byte is the data to be stored, the last is a throwaway
 
 ### GP1 Interface
 
