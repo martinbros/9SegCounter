@@ -1,6 +1,7 @@
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include <avr/eeprom.h>
+#include <util/delay.h>
 
 extern "C"
 {
@@ -180,6 +181,7 @@ int main(void)
 		switch(sentSize)
 		{
 			case 0x01:  // One byte via I2C
+
 				display = i2c_regs[0];  // Update Display
 				sentSize = 0x00;
 				break;
@@ -211,6 +213,36 @@ int main(void)
 				sentSize = 0x00;
 				update = 0x00;  // Do not update display
 				break;
+
+			case 0x05:
+				/*
+				for (uint16_t idx = 0; idx < 512; idx++) 
+				{
+					uint8_t *adr;
+					adr = (uint8_t *) idx;
+					//address = (uint8_t *) idx;
+					eeprom_write_byte(adr, i2c_regs[0]);
+				}
+				*/
+				/*
+				set_digit(0, 0, 100, 0, 0);  // Set ones place number
+				set_digit(0, 1, 100, 0, 0);  //Set tens place number
+				write_pixels();
+				write_pixels();
+
+				_delay_ms(3000);
+
+				display = 69;
+				oneRedColor = 0;
+				oneGrnColor = 100;
+				oneBluColor = 100;
+				tenRedColor = 100;
+				tenGrnColor = 100;
+				tenBluColor = 0;
+				*/
+
+				//address = (uint8_t *) (0);
+				update = 0x03;
 			
 			case 0x06:  // Six bytes via I2C
 				// Set Digits color
