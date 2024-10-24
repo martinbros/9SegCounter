@@ -13,15 +13,13 @@ Using the buttons, a user can store 49 unique numbers in non-volatile memory. Ea
 
 Using the I2C bus, the user has full read and write access to the ATTiny 84's 512 byte EEPROM and has full command of the display (displayed number and digit color).
 
-- Cap the RGB value
-
 ### Button Interface
 
 - Pressing a button above a digit increases that digit by 1
 - Pressing a button below a digit decreases that digit by 1
 - The displayed digit is stored as a decimal 2 digit number (0-99)
-- Pressing the buttons above and below a digit changes the color of that digit
-  - Each unique digit color combination corresponds to a unique number saved in non-volatile memory
+- Pressing the buttons above and below a digit simultaneously changes the color of that digit
+  - Each unique two digit color combination corresponds to a unique number saved in non-volatile memory
   - 7 unique colors per "ones" digit x 7 unique colors per "tens" digit = 49 unique values stored in non-volatile memory
   - EEPROM Address location is built by taking the "ones" position color index (0-6) and adding it to the "tens" position color index which has been multipled by 10 (0-6 x 10) [e.g. 00, 02, 03 ... 07, 10, 11 ... 17, 20 ... 27 ... 77]
 
@@ -31,17 +29,15 @@ Using the I2C bus, the user has full read and write access to the ATTiny 84's 51
 
 **Display Functions**
 
-- 1 8-bit message: the display will update to show the sent number
-
+- 1 8-bit message: the display will update to show the sent number (Displayed number is not stored in memory)
 - 3 8-bit messages: set the RGB values of the digits to be displayed (Digit must be refreshed to update color)
-
 - 6 8-bit messages: set the RGB values of the tens place digit and then ones place digit (Digit must be refreshed to update color)
 
 **Memory Functions**
 
 - 2 8-bit message: The sent number is converted to a 16-bit EEPROM address pointer, the display will update to display the value stored in memory.
-
 - 4 8-bit messages: first 2 bytes are combined to a 16-bit EEPROM address pointer, third byte is the data to be stored in the EEPROM, the last byte is a throwaway
+- 5 8-bit messages: The entire EEPROM is filled with the contents of the first message, the remaining 4 messages are discarded
 
 ### GP1 Interface
 
