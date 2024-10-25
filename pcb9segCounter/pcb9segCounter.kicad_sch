@@ -4,6 +4,13 @@
 	(generator_version "8.0")
 	(uuid "c50b0073-6340-498a-8f0c-212ef3b3c0fe")
 	(paper "A4")
+	(title_block
+		(title "Nine Segment SAO")
+		(date "2024-10-24")
+		(rev "1")
+		(company "Ryan Martin")
+		(comment 1 "https://github.com/martinbros/9SegCounter")
+	)
 	(lib_symbols
 		(symbol "Device:R"
 			(pin_numbers hide)
@@ -426,12 +433,12 @@
 		)
 	)
 	(no_connect
-		(at 140.97 66.04)
+		(at 182.88 58.42)
 		(uuid "3b0b78f7-05e5-4ef7-a6dd-10f714773041")
 	)
 	(wire
 		(pts
-			(xy 93.98 62.23) (xy 96.52 62.23)
+			(xy 135.89 54.61) (xy 138.43 54.61)
 		)
 		(stroke
 			(width 0)
@@ -441,7 +448,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 62.23) (xy 121.92 62.23)
+			(xy 161.29 54.61) (xy 163.83 54.61)
 		)
 		(stroke
 			(width 0)
@@ -451,7 +458,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 59.69) (xy 93.98 62.23)
+			(xy 135.89 52.07) (xy 135.89 54.61)
 		)
 		(stroke
 			(width 0)
@@ -461,7 +468,7 @@
 	)
 	(wire
 		(pts
-			(xy 113.03 66.04) (xy 121.92 66.04)
+			(xy 154.94 58.42) (xy 163.83 58.42)
 		)
 		(stroke
 			(width 0)
@@ -471,7 +478,7 @@
 	)
 	(wire
 		(pts
-			(xy 68.58 66.04) (xy 77.47 66.04)
+			(xy 110.49 58.42) (xy 119.38 58.42)
 		)
 		(stroke
 			(width 0)
@@ -481,7 +488,7 @@
 	)
 	(wire
 		(pts
-			(xy 85.09 66.04) (xy 96.52 66.04)
+			(xy 127 58.42) (xy 138.43 58.42)
 		)
 		(stroke
 			(width 0)
@@ -491,7 +498,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 72.39) (xy 93.98 69.85)
+			(xy 135.89 64.77) (xy 135.89 62.23)
 		)
 		(stroke
 			(width 0)
@@ -501,7 +508,7 @@
 	)
 	(wire
 		(pts
-			(xy 93.98 69.85) (xy 96.52 69.85)
+			(xy 135.89 62.23) (xy 138.43 62.23)
 		)
 		(stroke
 			(width 0)
@@ -511,7 +518,7 @@
 	)
 	(wire
 		(pts
-			(xy 138.43 66.04) (xy 140.97 66.04)
+			(xy 180.34 58.42) (xy 182.88 58.42)
 		)
 		(stroke
 			(width 0)
@@ -521,7 +528,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 69.85) (xy 121.92 69.85)
+			(xy 161.29 62.23) (xy 163.83 62.23)
 		)
 		(stroke
 			(width 0)
@@ -531,7 +538,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 59.69) (xy 119.38 62.23)
+			(xy 161.29 52.07) (xy 161.29 54.61)
 		)
 		(stroke
 			(width 0)
@@ -541,7 +548,7 @@
 	)
 	(wire
 		(pts
-			(xy 119.38 72.39) (xy 119.38 69.85)
+			(xy 161.29 64.77) (xy 161.29 62.23)
 		)
 		(stroke
 			(width 0)
@@ -549,9 +556,59 @@
 		)
 		(uuid "ff04f14c-2a46-471a-ac29-7d3cdcf5b20b")
 	)
+	(rectangle
+		(start 88.9 38.1)
+		(end 190.5 81.28)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 3c51ab46-f97d-49c3-8087-b462f58e02af)
+	)
+	(rectangle
+		(start 88.9 88.9)
+		(end 190.5 132.08)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 4fd888c8-7cf0-4cb1-aa28-74d470dcec0a)
+	)
+	(text "Electrical Elements"
+		(exclude_from_sim no)
+		(at 88.9 38.1 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(thickness 0.508)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "2aa38053-48ce-4ac2-8088-7143819a205a")
+	)
+	(text "Mechanical Elements"
+		(exclude_from_sim no)
+		(at 88.9 88.9 0)
+		(effects
+			(font
+				(size 2.54 2.54)
+				(thickness 0.508)
+				(bold yes)
+			)
+			(justify left bottom)
+		)
+		(uuid "74819f62-0891-4496-87cf-7eb5ed0c1b6c")
+	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 93.98 59.69 0)
+		(at 135.89 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -560,7 +617,7 @@
 		(fields_autoplaced yes)
 		(uuid "02a8bd40-1fdd-4faa-9e24-1620bccc8dfd")
 		(property "Reference" "#PWR01"
-			(at 93.98 63.5 0)
+			(at 135.89 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -569,7 +626,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 93.98 54.61 0)
+			(at 135.89 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -577,7 +634,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 59.69 0)
+			(at 135.89 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -586,7 +643,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.98 59.69 0)
+			(at 135.89 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -595,7 +652,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 93.98 59.69 0)
+			(at 135.89 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -617,7 +674,7 @@
 	)
 	(symbol
 		(lib_id "power:+5V")
-		(at 119.38 59.69 0)
+		(at 161.29 52.07 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -626,7 +683,7 @@
 		(fields_autoplaced yes)
 		(uuid "03d94c26-d829-4696-97bd-ee5c7b8047dd")
 		(property "Reference" "#PWR03"
-			(at 119.38 63.5 0)
+			(at 161.29 55.88 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -635,7 +692,7 @@
 			)
 		)
 		(property "Value" "+5V"
-			(at 119.38 54.61 0)
+			(at 161.29 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -643,7 +700,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 119.38 59.69 0)
+			(at 161.29 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -652,7 +709,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 119.38 59.69 0)
+			(at 161.29 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -661,7 +718,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"+5V\""
-			(at 119.38 59.69 0)
+			(at 161.29 52.07 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -683,7 +740,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 114.3 127 0)
+		(at 146.05 110.49 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -692,7 +749,7 @@
 		(fields_autoplaced yes)
 		(uuid "23ef2cb7-64ef-4352-9054-9a6474f1bbfe")
 		(property "Reference" "H3"
-			(at 116.84 126.3649 0)
+			(at 148.59 109.8549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -701,7 +758,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 116.84 128.27 0)
+			(at 148.59 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -710,7 +767,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO7380"
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -719,7 +776,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -728,7 +785,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -737,7 +794,7 @@
 			)
 		)
 		(property "Footprint Check" ""
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -746,7 +803,7 @@
 			)
 		)
 		(property "Implementation" ""
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -755,7 +812,7 @@
 			)
 		)
 		(property "footprintCheck" "y"
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -764,7 +821,7 @@
 			)
 		)
 		(property "implementationCheck" "y"
-			(at 114.3 127 0)
+			(at 146.05 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -783,7 +840,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 93.98 72.39 0)
+		(at 135.89 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -792,7 +849,7 @@
 		(fields_autoplaced yes)
 		(uuid "538fff93-20eb-4c05-b671-f6e419d34d40")
 		(property "Reference" "#PWR02"
-			(at 93.98 78.74 0)
+			(at 135.89 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -801,7 +858,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 93.98 77.47 0)
+			(at 135.89 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -809,7 +866,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 93.98 72.39 0)
+			(at 135.89 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -818,7 +875,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 93.98 72.39 0)
+			(at 135.89 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -827,7 +884,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 93.98 72.39 0)
+			(at 135.89 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -849,7 +906,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 88.9 127 0)
+		(at 120.65 110.49 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -858,7 +915,7 @@
 		(fields_autoplaced yes)
 		(uuid "5dc9670b-5791-4238-9094-dd8a2fd9cae6")
 		(property "Reference" "H1"
-			(at 91.44 126.3649 0)
+			(at 123.19 109.8549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -867,7 +924,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 91.44 128.27 0)
+			(at 123.19 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -876,7 +933,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO7380"
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -885,7 +942,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -894,7 +951,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -903,7 +960,7 @@
 			)
 		)
 		(property "Footprint Check" ""
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -912,7 +969,7 @@
 			)
 		)
 		(property "Implementation" ""
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -921,7 +978,7 @@
 			)
 		)
 		(property "footprintCheck" "y"
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -930,7 +987,7 @@
 			)
 		)
 		(property "implementationCheck" "y"
-			(at 88.9 127 0)
+			(at 120.65 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -949,7 +1006,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 101.6 127 0)
+		(at 133.35 110.49 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -958,7 +1015,7 @@
 		(fields_autoplaced yes)
 		(uuid "6634ffff-cc2d-468a-9ca7-4d83c4d21d55")
 		(property "Reference" "H2"
-			(at 104.14 126.3649 0)
+			(at 135.89 109.8549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -967,7 +1024,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 104.14 128.27 0)
+			(at 135.89 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -976,7 +1033,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO7380"
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -985,7 +1042,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -994,7 +1051,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1003,7 +1060,7 @@
 			)
 		)
 		(property "Footprint Check" ""
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1012,7 +1069,7 @@
 			)
 		)
 		(property "Implementation" ""
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1021,7 +1078,7 @@
 			)
 		)
 		(property "footprintCheck" "y"
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1030,7 +1087,7 @@
 			)
 		)
 		(property "implementationCheck" "y"
-			(at 101.6 127 0)
+			(at 133.35 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1049,7 +1106,7 @@
 	)
 	(symbol
 		(lib_id "Mechanical:MountingHole")
-		(at 127 127 0)
+		(at 158.75 110.49 0)
 		(unit 1)
 		(exclude_from_sim yes)
 		(in_bom no)
@@ -1058,7 +1115,7 @@
 		(fields_autoplaced yes)
 		(uuid "9b6ec239-35e8-4de5-aab7-dafeeb742691")
 		(property "Reference" "H4"
-			(at 129.54 126.3649 0)
+			(at 161.29 109.8549 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1067,7 +1124,7 @@
 			)
 		)
 		(property "Value" "~"
-			(at 129.54 128.27 0)
+			(at 161.29 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1076,7 +1133,7 @@
 			)
 		)
 		(property "Footprint" "MountingHole:MountingHole_2.2mm_M2_ISO7380"
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1085,7 +1142,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1094,7 +1151,7 @@
 			)
 		)
 		(property "Description" "Mounting Hole without connection"
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1103,7 +1160,7 @@
 			)
 		)
 		(property "Footprint Check" ""
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1112,7 +1169,7 @@
 			)
 		)
 		(property "Implementation" ""
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1121,7 +1178,7 @@
 			)
 		)
 		(property "footprintCheck" "y"
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1130,7 +1187,7 @@
 			)
 		)
 		(property "implementationCheck" "y"
-			(at 127 127 0)
+			(at 158.75 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1149,7 +1206,7 @@
 	)
 	(symbol
 		(lib_id "power:GND")
-		(at 119.38 72.39 0)
+		(at 161.29 64.77 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1158,7 +1215,7 @@
 		(fields_autoplaced yes)
 		(uuid "e4677b46-f420-432c-ab77-021811924bf2")
 		(property "Reference" "#PWR04"
-			(at 119.38 78.74 0)
+			(at 161.29 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1167,7 +1224,7 @@
 			)
 		)
 		(property "Value" "GND"
-			(at 119.38 77.47 0)
+			(at 161.29 69.85 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1175,7 +1232,7 @@
 			)
 		)
 		(property "Footprint" ""
-			(at 119.38 72.39 0)
+			(at 161.29 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1184,7 +1241,7 @@
 			)
 		)
 		(property "Datasheet" ""
-			(at 119.38 72.39 0)
+			(at 161.29 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1193,7 +1250,7 @@
 			)
 		)
 		(property "Description" "Power symbol creates a global label with name \"GND\" , ground"
-			(at 119.38 72.39 0)
+			(at 161.29 64.77 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1215,7 +1272,7 @@
 	)
 	(symbol
 		(lib_id "Device:R")
-		(at 81.28 66.04 90)
+		(at 123.19 58.42 90)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1224,15 +1281,15 @@
 		(fields_autoplaced yes)
 		(uuid "e956d80d-24b7-4146-a94e-67ebcc983395")
 		(property "Reference" "R1"
-			(at 81.28 59.69 90)
+			(at 123.19 52.07 90)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "500"
-			(at 81.28 62.23 90)
+		(property "Value" "470"
+			(at 123.19 54.61 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1240,7 +1297,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0805_2012Metric"
-			(at 81.28 67.818 90)
+			(at 123.19 60.198 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1249,7 +1306,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 81.28 66.04 0)
+			(at 123.19 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1258,7 +1315,7 @@
 			)
 		)
 		(property "Description" "Resistor"
-			(at 81.28 66.04 0)
+			(at 123.19 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1267,7 +1324,7 @@
 			)
 		)
 		(property "Footprint Check" ""
-			(at 81.28 66.04 0)
+			(at 123.19 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1276,7 +1333,7 @@
 			)
 		)
 		(property "Implementation" ""
-			(at 81.28 66.04 0)
+			(at 123.19 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1285,7 +1342,7 @@
 			)
 		)
 		(property "footprintCheck" "y"
-			(at 81.28 66.04 0)
+			(at 123.19 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1294,7 +1351,7 @@
 			)
 		)
 		(property "implementationCheck" "y"
-			(at 81.28 66.04 0)
+			(at 123.19 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1318,7 +1375,7 @@
 		)
 	)
 	(sheet
-		(at 121.92 59.69)
+		(at 163.83 52.07)
 		(size 16.51 12.7)
 		(fields_autoplaced yes)
 		(stroke
@@ -1330,7 +1387,7 @@
 		)
 		(uuid "3b31bf75-0830-4091-8274-a65747ea74f2")
 		(property "Sheetname" "pcb9SegDigit1"
-			(at 121.92 58.9784 0)
+			(at 163.83 51.3584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1339,7 +1396,7 @@
 			)
 		)
 		(property "Sheetfile" "9SegDigit.kicad_sch"
-			(at 121.92 72.7206 0)
+			(at 163.83 65.1006 0)
 			(effects
 				(font
 					(size 0.635 0.635)
@@ -1348,7 +1405,7 @@
 			)
 		)
 		(pin "DIN" input
-			(at 121.92 66.04 180)
+			(at 163.83 58.42 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1358,7 +1415,7 @@
 			(uuid "22e9234a-a89d-4816-bf27-a689dd5fbd7f")
 		)
 		(pin "5V" input
-			(at 121.92 62.23 180)
+			(at 163.83 54.61 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1368,7 +1425,7 @@
 			(uuid "a957f7a6-6195-4e3f-9a5b-97cc44e8e3a8")
 		)
 		(pin "GND" output
-			(at 121.92 69.85 180)
+			(at 163.83 62.23 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1378,7 +1435,7 @@
 			(uuid "a2a53cb3-2ed9-4f25-9964-5c4481c1b589")
 		)
 		(pin "DOUT" output
-			(at 138.43 66.04 0)
+			(at 180.34 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1390,13 +1447,13 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(page "3")
+					(page "4")
 				)
 			)
 		)
 	)
 	(sheet
-		(at 55.88 63.5)
+		(at 97.79 55.88)
 		(size 12.7 5.08)
 		(fields_autoplaced yes)
 		(stroke
@@ -1408,7 +1465,7 @@
 		)
 		(uuid "517a53d5-7656-4587-9e33-3f758e9574ab")
 		(property "Sheetname" "uC"
-			(at 55.88 62.7884 0)
+			(at 97.79 55.1684 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1417,7 +1474,7 @@
 			)
 		)
 		(property "Sheetfile" "uC.kicad_sch"
-			(at 55.88 69.1646 0)
+			(at 97.79 61.5446 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1426,7 +1483,7 @@
 			)
 		)
 		(pin "ledOut" output
-			(at 68.58 66.04 0)
+			(at 110.49 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1438,13 +1495,13 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(page "6")
+					(page "2")
 				)
 			)
 		)
 	)
 	(sheet
-		(at 96.52 59.69)
+		(at 138.43 52.07)
 		(size 16.51 12.7)
 		(fields_autoplaced yes)
 		(stroke
@@ -1456,7 +1513,7 @@
 		)
 		(uuid "5c493882-1689-4a6d-b4b4-08608e8edf66")
 		(property "Sheetname" "pcb9SegDigit"
-			(at 96.52 58.9784 0)
+			(at 138.43 51.3584 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1465,7 +1522,7 @@
 			)
 		)
 		(property "Sheetfile" "9SegDigit.kicad_sch"
-			(at 96.52 72.7206 0)
+			(at 138.43 65.1006 0)
 			(effects
 				(font
 					(size 0.635 0.635)
@@ -1474,7 +1531,7 @@
 			)
 		)
 		(pin "DIN" input
-			(at 96.52 66.04 180)
+			(at 138.43 58.42 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1484,7 +1541,7 @@
 			(uuid "b3470597-0c34-4ab8-8ce8-7691ba082937")
 		)
 		(pin "5V" input
-			(at 96.52 62.23 180)
+			(at 138.43 54.61 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1494,7 +1551,7 @@
 			(uuid "ed320a7a-0a59-4316-bcde-1d7919381a54")
 		)
 		(pin "GND" output
-			(at 96.52 69.85 180)
+			(at 138.43 62.23 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1504,7 +1561,7 @@
 			(uuid "2258ffb2-fd2e-4380-a08a-a9a8fc802ea1")
 		)
 		(pin "DOUT" output
-			(at 113.03 66.04 0)
+			(at 154.94 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1516,7 +1573,7 @@
 		(instances
 			(project "pcb9segCounter"
 				(path "/c50b0073-6340-498a-8f0c-212ef3b3c0fe"
-					(page "2")
+					(page "3")
 				)
 			)
 		)

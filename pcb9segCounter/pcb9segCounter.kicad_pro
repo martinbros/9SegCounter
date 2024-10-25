@@ -655,7 +655,7 @@
     },
     "net_format_name": "",
     "page_layout_descr_file": "",
-    "plot_directory": "",
+    "plot_directory": "./",
     "spice_current_sheet_as_root": false,
     "spice_external_command": "spice \"%I\"",
     "spice_model_current_sheet_as_root": true,
@@ -671,16 +671,16 @@
       "Root"
     ],
     [
+      "517a53d5-7656-4587-9e33-3f758e9574ab",
+      "uC"
+    ],
+    [
       "5c493882-1689-4a6d-b4b4-08608e8edf66",
       "pcb9SegDigit"
     ],
     [
       "3b31bf75-0830-4091-8274-a65747ea74f2",
       "pcb9SegDigit1"
-    ],
-    [
-      "517a53d5-7656-4587-9e33-3f758e9574ab",
-      "uC"
     ]
   ],
   "text_variables": {}

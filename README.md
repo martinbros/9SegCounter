@@ -48,3 +48,5 @@ Using the I2C bus, the user has full read and write access to the ATTiny 84's 51
 ## GP2 Interface
 
 - GP2 is connected directly to the first Neopixel and is terminated with a 470 ohm resistor. If you desire, feel free to implement the Neopixel protocol and set the segments however you like! Use the reference photo below for the sequence of the neopixels.
+
+![](photos/nineSegmentLedIndex.png)
