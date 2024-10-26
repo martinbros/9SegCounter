@@ -44,6 +44,17 @@ const uint8_t reg_size=sizeof(i2c_regs);
 volatile uint8_t reg_position;
 volatile uint8_t sentSize = 0x00;
 
+void disableLedPin()
+{
+	DDRB = 0x00;
+	PORTB &= ~(0x04);
+}
+
+void enableLedPin()
+{
+	DDRB |= 0x04;
+}
+
 void receiveEvent(uint8_t howMany)
 {
     if (howMany < 1)
@@ -246,6 +257,7 @@ int main(void)
 
 		if (update)  // update either number or address
 		{
+			enableLedPin();
 			if (update == 0x01) // Write number to EEPROM
 				eeprom_write_byte(address, display);
 			if (update == 0x02) // Pull number from EEPROM
@@ -256,6 +268,7 @@ int main(void)
 			write_pixels();
 			write_pixels();
 			update = 0x00;  // do not enter update
+			disableLedPin();
 		}
 
 		TinyWireS_stop_check();
