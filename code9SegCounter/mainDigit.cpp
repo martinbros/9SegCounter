@@ -16,9 +16,9 @@ extern "C"
 #define TWI_RX_BUFFER_SIZE ( 16 )
 #endif
 
-#define redScale 0x40
-#define greenScale 0x40
-#define blueScale redScale * 2
+#define redScale 0xFF
+#define greenScale 0xFF
+#define blueScale 0xFF
 uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 						{0x00, greenScale, 0x00},
 						{0x00, greenScale, blueScale},

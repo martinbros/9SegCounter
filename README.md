@@ -1,5 +1,9 @@
 # Nine Segment Counter SAO
 
+![](photos/frontRedCyan.jpg)
+
+![](photos/counting.gif)
+
 **Description**
 
 Use this handy little SAO to count whatever your heart desires: how many conversations you have at Supercon, how many times someone asks what SAO stands for, how many times someone asks "What are you working on?".
@@ -45,7 +49,7 @@ Using the I2C bus, the user has full read and write access to the ATTiny 84's 51
 - Max clock speed is ~150Hz
 - Displayed number is not stored in memory 
 
-## GP2 Interface
+### GP2 Interface
 
 - GP2 is connected directly to the first Neopixel and is terminated with a 470 ohm resistor. If you desire, feel free to implement the Neopixel protocol and set the segments however you like! Use the reference photo below for the sequence of the neopixels.
 
