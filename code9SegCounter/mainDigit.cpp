@@ -25,7 +25,8 @@ uint8_t colors[][3] = {{0x00, 0x00, blueScale},
 						{redScale, 0x00, 0x00},
 						{redScale, 0x00, blueScale},
 						{redScale, greenScale, 0x00},
-						{redScale, greenScale, blueScale}};
+						{redScale, greenScale, blueScale},
+						{0, 0, 0}};
 
 volatile uint8_t display = 0x00;
 volatile uint8_t update = 0x02;
@@ -43,6 +44,37 @@ volatile uint8_t i2c_regs[] =
 const uint8_t reg_size=sizeof(i2c_regs);
 volatile uint8_t reg_position;
 volatile uint8_t sentSize = 0x00;
+
+const uint8_t HSVlights[61] = 
+{0, 4, 8, 13, 17, 21, 25, 30, 34, 38, 42, 47, 51, 55, 59, 64, 68, 72, 76,
+81, 85, 89, 93, 98, 102, 106, 110, 115, 119, 123, 127, 132, 136, 140, 144,
+149, 153, 157, 161, 166, 170, 174, 178, 183, 187, 191, 195, 200, 204, 208,
+212, 217, 221, 225, 229, 234, 238, 242, 246, 251, 255};
+
+uint16_t colorWheel = 0;
+uint8_t rgbOne[3] = {0};
+uint8_t rgbTen[3] = {0};
+
+uint16_t clockCount = 0;
+
+void trueHSV(uint16_t angle, uint8_t *rgbArray)
+{
+  uint8_t red, green, blue;
+
+  angle %= 360;
+
+  if (angle<60) {red = 255; green = HSVlights[angle]; blue = 0;} else
+  if (angle<120) {red = HSVlights[120-angle]; green = 255; blue = 0;} else 
+  if (angle<180) {red = 0, green = 255; blue = HSVlights[angle-120];} else 
+  if (angle<240) {red = 0, green = HSVlights[240-angle]; blue = 255;} else 
+  if (angle<300) {red = HSVlights[angle-240], green = 0; blue = 255;} else 
+                 {red = 255, green = 0; blue = HSVlights[360-angle];}
+
+  rgbArray[0] = red;
+  rgbArray[1] = green;
+  rgbArray[2] = blue;
+}
+
 
 void disableLedPin()
 {
@@ -116,12 +148,12 @@ int main(void)
 	uint16_t oneColorIdx = 0x00;
 	uint16_t tenColorIdx = 0x00;
 	
-	uint8_t oneRedColor = colors[oneColorIdx][0];
-	uint8_t oneGrnColor = colors[oneColorIdx][1];
-	uint8_t oneBluColor = colors[oneColorIdx][2];
-	uint8_t tenRedColor = colors[oneColorIdx][0];
-	uint8_t tenGrnColor = colors[oneColorIdx][1];
-	uint8_t tenBluColor = colors[oneColorIdx][2];
+	rgbOne[0] = colors[oneColorIdx][0];
+	rgbOne[1] = colors[oneColorIdx][1];
+	rgbOne[2] = colors[oneColorIdx][2];
+	rgbTen[0] = colors[oneColorIdx][0];
+	rgbTen[1] = colors[oneColorIdx][1];
+	rgbTen[2] = colors[oneColorIdx][2];
 
 	//uint8_t *address;
 	address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
@@ -149,11 +181,11 @@ int main(void)
 
 			case 0x03: // ones place both button press
 				oneColorIdx += 1;
-				oneColorIdx %= 7;
+				oneColorIdx %= 8;
 
-				oneRedColor = colors[oneColorIdx][0];
-				oneGrnColor = colors[oneColorIdx][1];
-				oneBluColor = colors[oneColorIdx][2];
+				rgbOne[0] = colors[oneColorIdx][0];
+				rgbOne[1] = colors[oneColorIdx][1];
+				rgbOne[2] = colors[oneColorIdx][2];
 
 				address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 				
@@ -175,11 +207,11 @@ int main(void)
 
 			case 0x0c: // tens place both button press
 				tenColorIdx += 1;
-				tenColorIdx %= 7;
+				tenColorIdx %= 8;
 
-				tenRedColor = colors[tenColorIdx][0];
-				tenGrnColor = colors[tenColorIdx][1];
-				tenBluColor = colors[tenColorIdx][2];
+				rgbTen[0] = colors[tenColorIdx][0];
+				rgbTen[1] = colors[tenColorIdx][1];
+				rgbTen[2] = colors[tenColorIdx][2];
 
 				address = (uint8_t *) (tenColorIdx * 10 + oneColorIdx);
 
@@ -203,13 +235,13 @@ int main(void)
 			
 			case 0x03:  // Three bytes via I2C
 				// Set Digits color
-				oneRedColor = i2c_regs[0];
-				oneGrnColor = i2c_regs[1];
-				oneBluColor = i2c_regs[2];
+				rgbOne[0] = i2c_regs[0];
+				rgbOne[1] = i2c_regs[1];
+				rgbOne[2] = i2c_regs[2];
 
-				tenRedColor = i2c_regs[0];
-				tenGrnColor = i2c_regs[1];
-				tenBluColor = i2c_regs[2];
+				rgbTen[0] = i2c_regs[0];
+				rgbTen[1] = i2c_regs[1];
+				rgbTen[2] = i2c_regs[2];
 
 				sentSize = 0x00;
 				update = 0x00;  // Do not update display
@@ -238,17 +270,27 @@ int main(void)
 			
 			case 0x06:  // Six bytes via I2C
 				// Set Digits color
-				tenRedColor = i2c_regs[0];
-				tenGrnColor = i2c_regs[1];
-				tenBluColor = i2c_regs[2];
+				rgbTen[0] = i2c_regs[0];
+				rgbTen[1] = i2c_regs[1];
+				rgbTen[2] = i2c_regs[2];
 
-				oneRedColor = i2c_regs[3];
-				oneGrnColor = i2c_regs[4];
-				oneBluColor = i2c_regs[5];
+				rgbOne[0] = i2c_regs[3];
+				rgbOne[1] = i2c_regs[4];
+				rgbOne[2] = i2c_regs[5];
 
 				sentSize = 0x00;
 				update = 0x00; // Do not update display
 				break;
+		}
+
+		if (oneColorIdx == 7 && tenColorIdx == 7)
+		{
+			clockCount++;
+			if (clockCount > 8)
+			{
+				display++;
+				clockCount = 0;
+			}
 		}
 
 		if (display >= 100)
@@ -263,11 +305,31 @@ int main(void)
 			if (update == 0x02) // Pull number from EEPROM
 				display = eeprom_read_byte(address);
 
-			set_digit(display % 10, 0, oneRedColor, oneGrnColor, oneBluColor);  // Set ones place number
-			set_digit(display / 10 % 10, 1, tenRedColor, tenGrnColor, tenBluColor);  //Set tens place number
+			if (oneColorIdx == 7)
+				trueHSV(colorWheel, rgbOne);
+
+			if (tenColorIdx == 7) 
+				trueHSV(colorWheel + 45, rgbTen);
+
+			set_digit(display % 10, 0, rgbOne[0], rgbOne[1], rgbOne[2]);  // Set ones place number
+			set_digit(display / 10 % 10, 1, rgbTen[0], rgbTen[1], rgbTen[2]);  //Set tens place number
 			write_pixels();
 			write_pixels();
-			update = 0x00;  // do not enter update
+
+			if (oneColorIdx == 7 || tenColorIdx == 7)
+			{
+				colorWheel++;
+				if (colorWheel > 359)
+					colorWheel = 0;
+				
+				_delay_ms(10);
+				update = 0x03;
+			}
+
+			else
+				update = 0x00;  // do not enter update
+
+			
 			disableLedPin();
 		}
 
