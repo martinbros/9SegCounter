@@ -93,7 +93,12 @@ CPPSRC = $(TARGET).cpp TinyWireS.cpp
 
 # 0xe2 for internal 8MHz clock, 0x62 for internal 1MHz:
 # 0xdf for SPI enabled, 0xdc to add brown-out at 4.3V
-SET_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0xdc:m # -U efuse:w:0xff:m
+
+# Default Projecty Fuse settings
+# SET_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0xdc:m # -U efuse:w:0xff:m
+
+# Trying for 3.3v system
+SET_FUSES = -U lfuse:w:0xe2:m -U hfuse:w:0xdd:m -U efuse:w:0xff:m
 
 # List Assembler source files here.
 #     Make them always end in a capital .S.  Files ending in a lowercase .s
