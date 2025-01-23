@@ -74,7 +74,7 @@ FORMAT = ihex
 
 
 # Target file name (without extension).
-TARGET = mainDigit
+TARGET = main
 
 
 # Object files directory
@@ -84,11 +84,11 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC =  NineSegSao.c usiTwiSlave.c
+SRC = $(TARGET).c
 
 
 # List C++ source files here. (C dependencies are automatically generated.)
-CPPSRC = $(TARGET).cpp TinyWireS.cpp
+CPPSRC = 
 
 
 # 0xe2 for internal 8MHz clock, 0x62 for internal 1MHz:
